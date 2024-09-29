@@ -1,0 +1,71 @@
+{
+  "name": "element-plus-nuxt-starter",
+  "packageManager": "pnpm@8.12.1",
+  "version": "0.1.0",
+  "description": "Element Plus with Nuxt 3 Minimal Starter",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/element-plus/element-plus-nuxt-starter"
+  },
+  "author": "Tanguy Le Goff",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "preview": "nuxi preview",
+    "start": "node .output/server/index.mjs",
+    "generate": "nuxi generate",
+    "postinstall": "nuxi prepare"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@nuxtjs/i18n": "^8.5.3",
+    "@popperjs/core": "^2.11.8",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/nodemailer": "^6.4.15",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "element-plus": "^2.4.4",
+    "form-data": "^4.0.0",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "mailgun.js": "^10.2.3",
+    "mongoose": "^8.5.3",
+    "nodemailer": "^6.9.14",
+    "stripe": "^16.9.0",
+    "yaml": "^2.5.1"
+  },
+  "devDependencies": {
+    "@element-plus/nuxt": "^1.0.7",
+    "@eslint/js": "^9.11.1",
+    "@nuxtjs/color-mode": "^3.3.2",
+    "@pinia/nuxt": "^0.5.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@unocss/nuxt": "^0.58.0",
+    "@vueuse/nuxt": "^10.7.0",
+    "consola": "^3.2.3",
+    "eslint": "^9.11.1",
+    "eslint-plugin-vue": "^9.28.0",
+    "globals": "^15.9.0",
+    "nuxt": "^3.8.2",
+    "sass": "^1.69.5",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.7.0",
+    "yaml-loader": "^0.8.1"
+  },
+  "peerDependencies": {
+    "pinia": "^2.1.6"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack",
+        "vite",
+        "vue"
+      ]
+    }
+  }
+}

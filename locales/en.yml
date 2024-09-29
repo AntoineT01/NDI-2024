@@ -1,0 +1,121 @@
+form:
+  firstname: "First Name"
+  lastname: "Last Name"
+  name: "Name"
+  email: "Email"
+  message: "Message"
+  password: "Password"
+  confirm_password: "Confirm Password"
+  submit: "Submit"
+  cancel: "Cancel"
+  email_required: "Please enter your email"
+  email_invalid: "Please enter a valid email address"
+  password_required: "Please enter your password"
+  message_required: "Please enter your message"
+  current_password_required: "Please enter your current password"
+  new_password_required: "Please enter your new password"
+  confirm_password_required: "Please confirm your new password"
+  password_min_length: "Password must be at least 6 characters long"
+  password_mismatch: "Passwords do not match"
+
+contact:
+  title: "Thank you for taking the time to contact me. How can I help you?"
+  placeholder:
+    name: "Andrew"
+    email: "{'john.andrew@example.com'}"
+    message: "Hello, I wanted to tell you that your website is amazing!"
+  confirmation_popup: "Are you sure you want to send this message? You are limited to 3 messages per day."
+  success_message: "Message sent successfully!"
+  error_message: "Failed to send the message"
+  cancel_message: "Message sending canceled"
+  too_many_messages: "You have reached the message limit for today"
+  post:
+    error:
+      fields_required: "All fields are required."
+      too_many_messages_ip: "Too many messages sent from this IP. Please try again tomorrow."
+      too_many_messages_email: "Too many messages sent from this email. Please try again tomorrow."
+      missing_email_config: "Email configuration is missing in conf file."
+      missing_recipient_email: "Recipient email is missing in conf file."
+      send_failure: "Failed to send message: {error}"
+      send_failure_generic: "Failed to send message."
+    success:
+      message_sent: "Message sent successfully!"
+
+header:
+  sign_in: "Sign In"
+  sign_up: "Sign Up"
+  log_out: "Log Out"
+  contact: "Contact"
+  profile: "Profile"
+  warning: "Warning"
+  log_out_confirm: "Are you sure you want to log out?"
+  log_out_canceled: "Logout canceled"
+  language: "Language"
+
+sign_in:
+  title: "Sign in to your account"
+  success_message: "You are now signed in"
+  error_message: "Sign in failed. Please try again."
+  invalid_credentials: "Invalid email or password"
+  submit_button: "Sign In"
+  forgot_password: "Forgot password?"
+  reset_password_link: "Reset"
+  reset_password_warning: "Please enter your email to reset your password"
+  reset_password_success: "Password reset instructions have been sent to your email"
+  reset_password_error: "Failed to send reset email. Please try again."
+  no_account: "Don’t have an account?"
+  register_link: "Sign Up"
+
+profile:
+  title: "Update your profile"
+  save_button: "Save Profile"
+  save_success: "Profile saved successfully!"
+  save_failed: "Failed to save profile"
+
+password:
+  change_title: "Change your password"
+  current_password: "Current Password"
+  new_password: "New Password"
+  confirm_new_password: "Confirm New Password"
+  change_button: "Change Password"
+  current_password_incorrect: "Current password is incorrect"
+  change_success: "Password changed successfully!"
+  change_failed: "Failed to change password"
+
+register:
+  title: "Create your account"
+  submit_button: "Sign Up"
+  success_message: "Registration request confirmed. Please check your email for account verification."
+  email_exists: "An account with this email already exists"
+  failed_message: "Registration failed"
+  form_error: "Please correct the errors in the form"
+  already_have_account: "Already have an account?"
+  log_in_link: "Sign In"
+
+log_out:
+  success: "You are now logged out"
+
+hero:
+  title: "Sample Application"
+
+pricing:
+  title: "Pricing"
+  basic: "Basic"
+  premium: "Premium"
+  ultimate: "Ultimate"
+  buy_button: "Buy"
+  bought: "You have purchased for {price}!"
+
+app:
+  error: "An unexpected error occurred"
+
+account:
+  activation:
+    error:
+      token_required: "Token is required."
+      request_not_found: "Request not found or invalid."
+      request_expired: "Request has expired."
+      token_invalid_or_expired: "Invalid or expired token."
+      activation_failed: "Failed to activate account."
+    success:
+      account_activated: "Account activated successfully."
