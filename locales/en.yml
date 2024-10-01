@@ -96,15 +96,7 @@ log_out:
   success: "You are now logged out"
 
 hero:
-  title: "Sample Application"
-
-pricing:
-  title: "Pricing"
-  basic: "Basic"
-  premium: "Premium"
-  ultimate: "Ultimate"
-  buy_button: "Buy"
-  bought: "You have purchased for {price}!"
+  title: "Hey, I'm Tanguy"
 
 app:
   error: "An unexpected error occurred"

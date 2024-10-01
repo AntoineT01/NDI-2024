@@ -99,15 +99,7 @@ log_out:
   success: "Vous êtes maintenant déconnecté"
 
 hero:
-  title: "Application modèle"
-
-pricing:
-  title: "Tarification"
-  basic: "Basique"
-  premium: "Premium"
-  ultimate: "Ultime"
-  buy_button: "Acheter"
-  bought: "Vous avez acheté pour {price} !"
+  title: "Bonjour, Je suis Tanguy"
 
 email-verification:
   success: "Votre email a été vérifié avec succès"

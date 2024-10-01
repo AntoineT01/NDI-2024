@@ -1,11 +1,11 @@
 {
-  "name": "element-plus-nuxt-starter",
+  "name": "portfolio",
   "packageManager": "pnpm@8.12.1",
   "version": "0.1.0",
-  "description": "Element Plus with Nuxt 3 Minimal Starter",
+  "description": "Tanguy Le Goff's portfolio",
   "repository": {
     "type": "git",
-    "url": "git://github.com/element-plus/element-plus-nuxt-starter"
+    "url": "git://github.com/flintpop/portfolio.git"
   },
   "author": "Tanguy Le Goff",
   "license": "MIT",

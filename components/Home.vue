@@ -8,7 +8,6 @@
           </el-col>
         </el-row>
       </el-container>
-      <div style="height: 50vh"></div>
     </el-main>
 
     <!-- Pied de page -->
