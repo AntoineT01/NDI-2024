@@ -24,5 +24,3 @@ $-colors: (
   $colors: $-colors,
   $button-padding-horizontal: ("default": 50px)
 );
-
-@use './dark.scss';
