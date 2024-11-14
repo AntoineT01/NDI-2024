@@ -96,7 +96,9 @@ log_out:
   success: "You are now logged out"
 
 hero:
-  title: "Hey, I'm Tanguy"
+  title:
+    first_part: "Hey, "
+    second_part: "I'm Tanguy"
 
 app:
   error: "An unexpected error occurred"

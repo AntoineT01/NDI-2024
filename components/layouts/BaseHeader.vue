@@ -29,11 +29,11 @@ function navigateTo(route: string) {
 
 <template>
   <el-menu mode="horizontal">
-    <el-menu-item index="0">
-      <NuxtLink to="/" style="display: flex; align-items: center;" class="link">
-        <img style="width: 40px; margin-right: 10px;" src="~/assets/vue.svg" alt="logo" />Template
-      </NuxtLink>
-    </el-menu-item>
+    <NuxtLink to="/" style="margin-right: auto">
+      <el-menu-item index="0" style="display: flex; align-items: center;" class="link">
+          <img style="width:150px; margin-right: 10px;" src="/logo_tanguy_v1.png" alt="website logo" />
+      </el-menu-item>
+    </NuxtLink>
 
     <el-menu-item index="1" @click="navigateTo('/contact')">
       {{ t('header.contact') }}
@@ -68,7 +68,7 @@ function navigateTo(route: string) {
   text-decoration: none;
   font-size: 16px;
 }
-.el-menu--horizontal > .el-menu-item:nth-child(1) {
-  margin-right: auto;
-}
+//.el-menu--horizontal > .NuxtLink:nth-child(1) {
+//  margin-right: auto;
+//}
 </style>

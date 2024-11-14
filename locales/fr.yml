@@ -99,7 +99,9 @@ log_out:
   success: "Vous êtes maintenant déconnecté"
 
 hero:
-  title: "Bonjour, Je suis Tanguy"
+  title:
+    first_part: "Bonjour, "
+    second_part: "Je suis Tanguy"
 
 email-verification:
   success: "Votre email a été vérifié avec succès"
