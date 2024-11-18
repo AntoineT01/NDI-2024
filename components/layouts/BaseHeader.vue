@@ -2,52 +2,61 @@
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
-// Importez les icônes Font Awesome si vous les utilisez
 import '@fortawesome/fontawesome-free/css/all.css';
 
 const router = useRouter();
 const { t, locale } = useI18n();
 
-// Langues disponibles dans l'application
 const languages = [
   { value: 'en', label: 'English' },
   { value: 'fr', label: 'Français' },
 ];
 
-// Initialiser le cookie pour mémoriser la langue choisie
 const languageCookie = useCookie('i18n_redirected');
 
-// Fonction pour changer la langue et mettre à jour le cookie
 function changeLanguage(lang: string) {
-  locale.value = lang; // Mettre à jour la langue actuelle
-  languageCookie.value = lang; // Mettre à jour le cookie
+  locale.value = lang;
+  languageCookie.value = lang;
 }
 
-// Fonction pour naviguer
 function navigateTo(route: string) {
   router.push(route);
-  overflowMenuOpen.value = false; // Fermer le menu de débordement après la navigation
+  overflowMenuOpen.value = false;
 }
 
-// Gestion des menus déroulants
 const overflowMenuOpen = ref(false);
-
-// Gestion du menu de débordement
 const isOverflow = ref(false);
+const linksContainer = ref<HTMLElement | null>(null);
 
 function handleOverflowCommand(command: string) {
   if (command === 'contact') {
     navigateTo('/contact');
   }
-  // Vous pouvez ajouter d'autres commandes si nécessaire
 }
 
-// Gestion du clic extérieur pour fermer les menus
 function handleClickOutside(event: MouseEvent) {
   const target = event.target as HTMLElement;
-  if (!target.closest('.dropdown')) {
-    // Fermez les dropdowns si nécessaire
+  if (!target.closest('.dropdown') && !target.closest('.overflow-button')) {
+    overflowMenuOpen.value = false;
   }
+}
+
+function adjustMenu() {
+  nextTick(() => {
+    const container = linksContainer.value;
+    if (!container) return;
+
+    const links = container.querySelector('.links') as HTMLElement;
+    const overflowBtn = container.querySelector('.overflow-button') as HTMLElement;
+
+    if (!links || !overflowBtn) return;
+
+    const availableWidth = container.clientWidth;
+    const linksWidth = links.scrollWidth;
+    const totalWidth = linksWidth + overflowBtn.offsetWidth;
+
+    isOverflow.value = totalWidth > availableWidth;
+  });
 }
 
 onMounted(() => {
@@ -60,34 +69,6 @@ onBeforeUnmount(() => {
   window.removeEventListener('click', handleClickOutside);
   window.removeEventListener('resize', adjustMenu);
 });
-
-// Référence au conteneur des liens pour ajuster le menu
-const linksContainer = ref<HTMLElement | null>(null);
-
-function adjustMenu() {
-  nextTick(() => {
-    const container = linksContainer.value;
-    if (!container) return;
-
-
-    const availableWidth = container.clientWidth;
-    const links = container.querySelector('.links') as HTMLElement;
-    const overflowBtn = container.querySelector('.overflow-button') as HTMLElement;
-
-    if (!links || !overflowBtn) return;
-
-    const linksWidth = links.scrollWidth;
-    const totalWidth = linksWidth + overflowBtn.offsetWidth;
-
-    // Si les liens dépassent l'espace disponible, afficher le bouton de débordement
-    if (totalWidth > availableWidth) {
-      isOverflow.value = true;
-      alert('Les liens dépassent l\'espace disponible');
-    } else {
-      isOverflow.value = false;
-    }
-  });
-}
 </script>
 
 <template>
@@ -126,7 +107,7 @@ function adjustMenu() {
             </NuxtLink>
         </li>
       </ul>
-      <el-dropdown class="dropdown" v-if="isOverflow" trigger="click" @command="handleOverflowCommand">
+      <el-dropdown trigger="click" @command="handleOverflowCommand">
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="contact" @click="navigateTo('/contact')">
@@ -153,10 +134,10 @@ function adjustMenu() {
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
+        <button class="overflow-button">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
       </el-dropdown>
-      <button class="overflow-button">
-        <i class="fas fa-ellipsis-h"></i>
-      </button>
     </div>
   </nav>
 </template>
@@ -166,8 +147,14 @@ function adjustMenu() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 200px;
+  padding: 20px 5vw; /* Utilisation de vw pour un padding responsive */
   position: relative;
+}
+
+@media (min-width: 1200px) {
+  .navbar {
+    padding: 30px 200px; /* Plus de padding pour les grands écrans */
+  }
 }
 
 .dropdown {
