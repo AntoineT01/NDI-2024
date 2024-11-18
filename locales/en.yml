@@ -99,6 +99,7 @@ hero:
   title:
     first_part: "Hey, "
     second_part: "I'm Tanguy"
+  subtitle: "I build modern, quality web applications, exercise counseling and I love optimizing my workflow"
 
 app:
   error: "An unexpected error occurred"

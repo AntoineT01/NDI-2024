@@ -102,6 +102,7 @@ hero:
   title:
     first_part: "Bonjour, "
     second_part: "Je suis Tanguy"
+  subtitle: "Je programme des applications web modernes de qualité, fais du consulting, et j'aime optimiser mon workflow"
 
 email-verification:
   success: "Votre email a été vérifié avec succès"
