@@ -10,13 +10,13 @@ export default defineNuxtConfig({
     app: {
         // head
         head: {
-            title: 'Template app',
+            title: 'Tanguy Le Goff',
             meta: [
                 {name: 'viewport', content: 'width=device-width, initial-scale=1'},
                 {
                     hid: 'description',
                     name: 'description',
-                    content: 'Template app for SaaS. Will be sold',
+                    content: 'Tanguy Le Goff - Fullstack web Developer',
                 },
             ],
             link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],

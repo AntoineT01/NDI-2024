@@ -4,6 +4,7 @@ import {ElMessage, ElForm, ElMessageBox} from 'element-plus';
 import type {FormRules} from 'element-plus';
 import {useI18n} from 'vue-i18n';
 import {type ContactFormData, sendContactForm} from "~/services/contact";
+import BaseCards from "~/components/BaseCards.vue";
 
 const {t} = useI18n();
 
@@ -90,7 +91,7 @@ const placeholder_message = ref('contact.placeholder.message');
 </script>
 
 <template>
-  <el-card class="contact-form">
+  <BaseCards class="contact-form">
     <h1 class="title">{{ t('contact.title') }}</h1>
     <client-only>
       <el-form ref="profileFormRef" :model="contactForm" :rules="contactRules" size="large" label-width="auto">
@@ -114,13 +115,14 @@ const placeholder_message = ref('contact.placeholder.message');
         </el-form-item>
       </el-form>
     </client-only>
-  </el-card>
+  </BaseCards>
 </template>
 
 <style lang="scss" scoped>
 .title {
   font-size: 2em;
   text-align: center;
+  margin: 1rem auto;
   width: 450px;
 }
 
@@ -134,7 +136,6 @@ const placeholder_message = ref('contact.placeholder.message');
 .contact-form {
   max-width: 500px;
   margin: 60px auto 0;
-  border-radius: var(--el-border-radius-round);
 }
 
 @media screen and (max-width: 560px) {
