@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Subtitle from "~/components/subtitle.vue";
+
 const t = useI18n().t;
 
 </script>
@@ -9,6 +11,7 @@ const t = useI18n().t;
       <span>{{ t('hero.title.first_part') }}</span>
       <span>{{ t('hero.title.second_part') }}</span>
     </h1>
+    <subtitle message="hero.subtitle" />
   </div>
 </template>
 
@@ -23,12 +26,12 @@ const t = useI18n().t;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   background: linear-gradient(90deg, #FFDEE9, #B5FFFC); /* Bleu vif et gris clair */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  align-items: center;
 }
 
 html.dark .hero-text {
