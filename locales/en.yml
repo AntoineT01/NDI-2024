@@ -114,3 +114,7 @@ account:
       activation_failed: "Failed to activate account."
     success:
       account_activated: "Account activated successfully."
+
+presentation_section:
+  title: "Nice to meet you, I'm Tanguy"
+  text: "Since I started in development {years} years ago, I've had the opportunity to work on many personal, professional, and academic projects with talented people. I'm always looking for new challenges and opportunities. Feel free to contact me if you have any questions or if you want to discuss your project."

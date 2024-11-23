@@ -121,3 +121,7 @@ account:
       activation_failed: "Échec de l'activation du compte."
     success:
       account_activated: "Compte activé avec succès."
+
+presentation_section:
+  title: "Enchanté, je suis Tanguy"
+  text: "Depuis mes débuts dans le développement il y a {years} ans, j'ai eu l'opportunité de travailler sur de nombreux projets personnels, professionnels et académiques avec de talentueuses personnes. Je suis passionné par la technologie et j'aime partager mes connaissances avec les autres. Je suis toujours à la recherche de nouveaux défis et de nouvelles opportunités. N'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez discuter de votre projet."

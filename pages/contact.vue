@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import { ElMessage, ElForm, ElMessageBox } from 'element-plus';
-import type { FormRules } from 'element-plus';
-import { useI18n } from 'vue-i18n';
+import {reactive, ref} from 'vue';
+import {ElMessage, ElForm, ElMessageBox} from 'element-plus';
+import type {FormRules} from 'element-plus';
+import {useI18n} from 'vue-i18n';
 import {type ContactFormData, sendContactForm} from "~/services/contact";
 
-const { t } = useI18n();
+const {t} = useI18n();
 
 const contactForm: ContactFormData = reactive({
   email: '',
@@ -19,11 +19,11 @@ const form_message_required = ref('form.message_required');
 
 const contactRules: FormRules = {
   email: [
-    { required: true, message: t(email_required.value), trigger: 'blur' },
-    { type: 'email', message: t(email_invalid.value), trigger: ['blur', 'change'] },
+    {required: true, message: t(email_required.value), trigger: 'blur'},
+    {type: 'email', message: t(email_invalid.value), trigger: ['blur', 'change']},
   ],
   message: [
-    { required: true, message: t(form_message_required.value), trigger: 'blur' },
+    {required: true, message: t(form_message_required.value), trigger: 'blur'},
   ],
 };
 
@@ -90,33 +90,38 @@ const placeholder_message = ref('contact.placeholder.message');
 </script>
 
 <template>
-  <div>
-    <h1 class="title">{{ $t('contact.title') }}</h1>
+  <el-card class="contact-form">
+    <h1 class="title">{{ t('contact.title') }}</h1>
     <client-only>
-      <el-form class="contact-form" ref="profileFormRef" :model="contactForm" :rules="contactRules" size="large" label-width="auto">
-        <el-form-item :label=$t(form_mail) label-position="top" prop="email">
-          <el-input v-model="contactForm.email" :placeholder=$t(placeholder_email)></el-input>
+      <el-form ref="profileFormRef" :model="contactForm" :rules="contactRules" size="large" label-width="auto">
+        <el-form-item :label=t(form_mail) label-position="top" prop="email">
+          <el-input class="custom-input" v-model="contactForm.email" :placeholder="t(placeholder_email)"
+                    type="text"></el-input>
         </el-form-item>
-        <el-form-item :label=$t(form_name) label-position="top" prop="name">
-          <el-input v-model="contactForm.name" :placeholder=$t(placeholder_name)></el-input>
+        <el-form-item :label=t(form_name) label-position="top" prop="name">
+          <el-input v-model="contactForm.name" :placeholder="t(placeholder_name)"
+                    type="text"></el-input>
         </el-form-item>
-        <el-form-item :label=$t(form_message) label-position="top" prop="message">
-          <el-input v-model="contactForm.message" :placeholder=$t(placeholder_message) type="textarea"></el-input>
+        <el-form-item :label=t(form_message) label-position="top" prop="message">
+          <el-input class="custom-input" autosize v-model="contactForm.message" :placeholder="t(placeholder_message)"
+                    type="textarea"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button w-full type="primary" @click="submitForm" :loading="loading">{{ $t('form.submit') }}</el-button>
+          <el-button round w-full type="primary" @click="submitForm" :loading="loading">{{
+              t('form.submit')
+            }}
+          </el-button>
         </el-form-item>
       </el-form>
     </client-only>
-  </div>
+  </el-card>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .title {
-  font-size: 2.5em;
+  font-size: 2em;
   text-align: center;
-  margin: 2em auto;
-  width: 500px;
+  width: 450px;
 }
 
 @media screen and (max-width: 560px) {
@@ -129,14 +134,29 @@ const placeholder_message = ref('contact.placeholder.message');
 .contact-form {
   max-width: 500px;
   margin: 60px auto 0;
+  border-radius: var(--el-border-radius-round);
 }
 
 @media screen and (max-width: 560px) {
   .title {
     width: 90%;
   }
+
   .contact-form {
     max-width: 90%;
   }
+}
+
+::v-deep(.el-input__wrapper) {
+  border-radius: var(--el-border-radius-round); /* Coins arrondis */
+}
+
+::v-deep(.el-input__inner) {
+  border-radius: var(--el-border-radius-round); /* Coins arrondis */
+}
+
+::v-deep(.el-textarea__inner) {
+  border-radius: var(--el-border-radius-round); /* Coins arrondis */
+  padding: 15px 20px;
 }
 </style>

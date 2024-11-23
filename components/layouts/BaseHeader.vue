@@ -102,8 +102,10 @@ onBeforeUnmount(() => {
         <li>
             <NuxtLink to="/contact" @click="navigateTo('/contact')">
               <el-button size="large" round type="primary">
+                <i class="mr-2 fa-solid fa-contact-card"></i>
                 {{ t('header.contact') }}
               </el-button>
+
             </NuxtLink>
         </li>
       </ul>

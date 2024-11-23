@@ -1,0 +1,32 @@
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 12px; /* Largeur de la scrollbar */
+  height: 12px; /* Hauteur de la scrollbar horizontale */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--el-text-color-primary); /* Couleur primaire */
+  border-radius: var(--el-border-radius-round); /* Coins arrondis */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Animation fluide */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--el-text-color-regular); /* Couleur primaire */
+
+}
+
+::-webkit-scrollbar-track {
+  background: #f9f9f9; /* Couleur de la piste */
+  border-radius: var(--el-border-radius-round); /* Coins arrondis */
+  transition: background-color 0.3s ease; /* Animation fluide */
+}
+
+::-webkit-scrollbar-track:hover {
+  background: #ececec; /* Légère variation de la couleur */
+}
+
+/* Supprime la disparition au survol */
+body {
+  overflow-y: scroll; /* Toujours afficher la scrollbar */
+  -webkit-overflow-scrolling: touch; /* Support pour le défilement fluide sur mobile */
+}

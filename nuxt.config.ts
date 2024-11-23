@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     },
 
     // css
-    css: ['~/assets/scss/index.scss'],
+    css: ['~/assets/scss/index.scss', '@/assets/scss/scrollbar.scss'],
 
     typescript: {
         strict: true,
