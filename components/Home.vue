@@ -7,10 +7,10 @@
             <Hero />
           </el-col>
           <HeroIllustration/>
+          <PresentationSection/>
+          <SkillsSection/>
         </el-row>
       </el-container>
-      <PresentationSection/>
-      <SkillsSection/>
     </el-main>
 
     <!-- Pied de page -->
@@ -32,7 +32,6 @@ import PresentationSection from "~/components/PresentationSection.vue";
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100%;
 }
 
 .el-main {

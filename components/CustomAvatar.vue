@@ -1,11 +1,18 @@
 <template>
-<el-image lazy src="/avataaars.svg" fit="contain">
+<el-image src="/avataaars.svg" fit="contain">
 </el-image>
 </template>
 
 <style scoped lang="scss">
 .el-image {
-  width: calc(50%);
-  height: calc(50%);
+  width: 15%;
+  height: 15%;
+}
+
+@media screen and (max-width: 768px) {
+  .el-image {
+    width: 40%;
+    height: 40%;
+  }
 }
 </style>
