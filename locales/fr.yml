@@ -124,7 +124,7 @@ account:
 
 presentation_section:
   title: "Ravi de faire votre connaissance"
-  text: "Depuis mes débuts dans le développement il y a {years} ans, j'ai eu l'opportunité de travailler sur de nombreux projets personnels, professionnels et académiques avec de talentueuses personnes. Je suis passionné par la technologie et j'aime partager mes connaissances avec les autres. Je suis toujours à la recherche de nouveaux défis et de nouvelles opportunités. N'hésitez pas à me contacter si vous avez des questions ou si vous souhaitez discuter de votre projet."
+  text: "Depuis mes débuts dans le développement il y a {years} ans, j'ai eu l'opportunité de travailler sur de nombreux projets personnels, professionnels et académiques avec de talentueuses personnes. Je suis passionné par la technologie et j'aime partager mes connaissances avec les autres. Je suis toujours à la recherche de nouveaux défis et de nouvelles opportunités."
 footer:
   main: Grandir, être utile, se dépasser et apprendre chaque jour.
   made_by: "Fait à la main avec soin"
@@ -133,12 +133,19 @@ footer:
 skills_section:
   title:
     web_dev: "Développeur fullstack"
+    consultant: "Consultant junior"
   subtitle:
     web_dev: "J'aime créer des choses de zéro et les voir se concrétiser, petit à petit, brique par brique."
+    consultant: "Accompagner des projets pour les rendre plus efficaces et user-friendly est une passion qui me pousse à apprendre encore plus chaque jour."
   bold_section1:
     web_dev: "Langages que j'utilise"
+    consultant: "Domaines où j'interviens"
   section1:
-    web_dev: "Vue, Nuxt, Java, HTML, CSS, Git"
+    web_dev: "Vue, Nuxt, Java, HTML, CSS, Git, Python"
+    consultant: "UX/UI, choix technologiques, gestion de contenu, stratégie numérique"
   bold_section2:
     web_dev: "Outils de dev"
-
+    consultant: "Projets et personnes accompagnées"
+  section2:
+    web_dev: "Wordpress, Spring, Element Plus, Github, Jetbrains IDEs"
+    consultant: "Site web d'une association, Coaching personnel, Développeur d'une startup"

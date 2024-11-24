@@ -135,7 +135,7 @@ const placeholder_message = ref('contact.placeholder.message');
 
 .contact-form {
   max-width: 500px;
-  margin: 60px auto 0;
+  margin: 10rem auto 10rem;
 }
 
 @media screen and (max-width: 560px) {
@@ -154,6 +154,7 @@ const placeholder_message = ref('contact.placeholder.message');
 
 ::v-deep(.el-input__inner) {
   border-radius: var(--el-border-radius-round); /* Coins arrondis */
+  padding: 5px;
 }
 
 ::v-deep(.el-textarea__inner) {

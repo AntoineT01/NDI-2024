@@ -117,7 +117,7 @@ account:
 
 presentation_section:
   title: "Nice to meet you"
-  text: "Since I started in development {years} years ago, I've had the opportunity to work on many personal, professional, and academic projects with talented people. I'm always looking for new challenges and opportunities. Feel free to contact me if you have any questions or if you want to discuss your project."
+  text: "Since I started in development {years} years ago, I've had the opportunity to work on many personal, professional, and academic projects with talented people. I'm always looking for new challenges and opportunities."
 
 footer:
   main: "Growing, being useful, surpassing oneself, and learning every day."
@@ -127,11 +127,20 @@ footer:
 skills_section:
   title:
     web_dev: "Fullstack Developer"
+    consultant: "Consultant"
   subtitle:
     web_dev: "I love to create things from scratch and see them grow, little bricks by little bricks."
+    consultant: "Helping projects to be more efficient and user-friendly is a passion that drives me to learn even more every day."
+
   bold_section1:
     web_dev: "Langages I use"
+    consultant: "Areas I work in"
   section1:
-    web_dev: "Vue, Nuxt, Java, HTML, CSS, Git"
+    web_dev: "Vue, Nuxt, Java, HTML, CSS, Git, Python"
+    consultant: "UX/UI, technological choices, content management, digital strategy"
   bold_section2:
     web_dev: "Dev Tools"
+    consultant: "Projects and people supported"
+  section2:
+    web_dev: "Wordpress, Spring, Element Plus, Github, Jetbrains IDEs"
+    consultant: "Website for an association, Personal coaching, Developer for a startup"
