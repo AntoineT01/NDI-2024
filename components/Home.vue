@@ -12,16 +12,10 @@
         </el-row>
       </el-container>
     </el-main>
-
-    <!-- Pied de page -->
-    <el-footer>
-      <BaseFooter />
-    </el-footer>
 </template>
 
 <script setup>
 import Hero from '~/components/Hero.vue';
-import BaseFooter from "~/components/layouts/BaseFooter.vue";
 import HeroIllustration from "~/components/HeroIllustration.vue";
 import PresentationSection from "~/components/PresentationSection.vue";
 </script>
