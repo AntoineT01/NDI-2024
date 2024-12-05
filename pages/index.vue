@@ -14,16 +14,16 @@ const affiche=ref(false)
 const deaffiche=ref(0)
 function clicked(){
   affiche.value=true
-  
+
   if(deaffiche.value==1){
     affiche.value=false
-    deaffiche.value=0  
+    deaffiche.value=0
   }
   else{
     deaffiche.value=1
-    
+
   }
-  
+
 
 }
 
