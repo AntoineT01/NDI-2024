@@ -1,8 +1,18 @@
 <script setup lang="ts">
+const display_heart = ref(true)
 const display_lungs = ref(false)
+const display_skin = ref(false)
 
 const heart_clicked = function () {
   display_lungs.value = true
+}
+
+const lungs_clicked = function () {
+  display_skin.value = true
+}
+
+const skin_clicked = function () {
+  display_skin.value = true
 }
 </script>
 
@@ -10,31 +20,32 @@ const heart_clicked = function () {
   <div class="human_container">
     <img src="~/assets/human_body/sketch_personnage.png" alt="Image d'un humain" class="human_body">
     <img src="~/assets/human_body/sketch_coeur.png" @click=heart_clicked alt="Image d'un coeur" class="human_heart">
-    <img src="~/assets/human_body/sketch_poumons.png" v-if="display_lungs" alt="Image d'un poumon" class="human_lungs">
+    <img src="~/assets/human_body/sketch_poumons.png" @click="lungs_clicked" v-if="display_lungs" alt="Image d'un poumon" class="human_lungs">
+    <img src="~/assets/human_body/sketch_peau.png" v-if="display_skin" alt="Image d'une peau" class="human_skin">
   </div>
 </template>
 
 <style scoped>
 .human_container {
   position: relative;
-  width: 500px; /* Correspond à la largeur de human_body */
-  height: 500px; /* Correspond à la hauteur de human_body */
-  margin: auto; /* Centre le conteneur dans la page */
+  width: 800px;
+  height: auto;
+  margin: auto;
 }
 
 .human_body {
-  width: 100%; /* Prend toute la largeur du conteneur */
-  height: 100%; /* Prend toute la hauteur du conteneur */
+  width: 100%;
+  height: 100%;
 }
 
 .human_lungs {
-  position: absolute; /* Permet de positionner l'image par rapport au conteneur */
-  top: 37%; /* Ajuste verticalement, en partant du haut */
-  left: 57%; /* Ajuste horizontalement, en partant de la gauche */
-  transform: translate(-50%, -50%); /* Centre l'image au niveau du point défini par top et left */
-  width: 30%; /* Ajuste la taille du cœur (optionnel) */
-  z-index: -1;
-  height: auto; /* Conserve les proportions */
+  position: absolute;
+  top: 37%;
+  left: 57%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: auto;
+  cursor: pointer;
 }
 
 .human_heart {
@@ -45,8 +56,16 @@ const heart_clicked = function () {
   width: 10%; /* Ajuste la taille du cœur (optionnel) */
   height: auto; /* Conserve les proportions */
   z-index: 999;
-
-  pointer-events: visible;
+  cursor: pointer;
 }
-
+.human_skin {
+  position: absolute;
+  top: 64%; /* Ajuste verticalement, en partant du haut */
+  left: 75%; /* Ajuste horizontalement, en partant de la gauche */
+  transform: translate(-50%, -50%); /* Centre l'image au niveau du point défini par top et left */
+  width: 14%; /* Ajuste la taille du cœur (optionnel) */
+  height: auto; /* Conserve les proportions */
+  z-index: 999;
+  cursor: pointer;
+}
 </style>
