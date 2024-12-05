@@ -57,5 +57,8 @@
   },
   "peerDependencies": {
     "pinia": "^2.1.6"
+  },
+  "resolutions": {
+    "dayjs": "^1.11.9"
   }
 }
