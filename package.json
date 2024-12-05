@@ -11,7 +11,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "nuxi dev",
     "build": "nuxi build",
     "preview": "nuxi preview",
@@ -58,17 +57,5 @@
   },
   "peerDependencies": {
     "pinia": "^2.1.6"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "webpack",
-        "vite",
-        "vue"
-      ]
-    },
-    "overrides": {
-      "sass": "^1.82.0"
-    }
   }
 }
