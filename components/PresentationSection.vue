@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
-
-const { t } = useI18n();
-
 const years = new Date().getFullYear() - 2019; // Par exemple, démarrage en 2019
 </script>
 
@@ -10,10 +6,10 @@ const years = new Date().getFullYear() - 2019; // Par exemple, démarrage en 201
   <div class="presentation-section">
     <div class="presentation-section-text">
       <p class="primary-text">
-        {{ t('presentation_section.title') }}
+        Titre
       </p>
       <p>
-        {{ t('presentation_section.text', { years }) }}
+        Annees
       </p>
     </div>
   </div>

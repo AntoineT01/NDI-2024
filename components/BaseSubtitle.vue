@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const t = useI18n().t;
 
 defineProps(
   {
@@ -12,7 +11,7 @@ defineProps(
 </script>
 
 <template>
-    <h2 class="subtitle">{{ t(message) }}</h2>
+    <h2 class="subtitle">Message</h2>
 </template>
 
 <style lang="scss" scoped>

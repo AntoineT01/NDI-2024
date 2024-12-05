@@ -10,13 +10,15 @@
     >
       <SkillsCards class="skills_card">
         <BaseIcon :icon_class="skill.icon"></BaseIcon>
-        <h2>{{ t(skill.title) }}</h2>
-        <p>{{ t(skill.subtitle) }}</p>
-        <p class="strong-primary-text"><strong>{{ t(skill.bold_section1) }}</strong></p>
-        <p>{{ t(skill.section1) }}</p>
-        <p class="strong-primary-text"><strong>{{ t(skill.bold_section2) }}</strong></p>
-        <p v-for="(item, idx) in t(skill.section2).split(',')" :key="idx">
-          {{ item.trim() }}
+        <h2>SKills</h2>
+        <p>Sous titre</p>
+        <p class="strong-primary-text"><strong>Primaire</strong></p>
+        <p>Section 1</p>
+        <p class="strong-primary-text"><strong>Text</strong></p>
+        <p>
+          Items
+          <br>
+          Items
         </p>
       </SkillsCards>
     </el-col>
@@ -26,9 +28,6 @@
 <script setup lang="ts">
 import SkillsCards from "~/components/SkillsCards.vue";
 import BaseIcon from "~/components/BaseIcon.vue";
-import {useI18n} from 'vue-i18n';
-
-const {t} = useI18n();
 
 // Structure des compétences pour simplifier le template
 const skills = [

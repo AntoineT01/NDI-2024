@@ -2,11 +2,8 @@
 import {reactive, ref} from 'vue';
 import {ElMessage, ElForm, ElMessageBox} from 'element-plus';
 import type {FormRules} from 'element-plus';
-import {useI18n} from 'vue-i18n';
 import {type ContactFormData, sendContactForm} from "~/services/contact";
 import BaseCards from "~/components/BaseCards.vue";
-
-const {t} = useI18n();
 
 const contactForm: ContactFormData = reactive({
   email: '',
@@ -14,17 +11,13 @@ const contactForm: ContactFormData = reactive({
   message: '',
 });
 
-const email_required = ref('form.email_required');
-const email_invalid = ref('form.email_invalid');
-const form_message_required = ref('form.message_required');
-
 const contactRules: FormRules = {
   email: [
-    {required: true, message: t(email_required.value), trigger: 'blur'},
-    {type: 'email', message: t(email_invalid.value), trigger: ['blur', 'change']},
+    {required: true, message: "Email required", trigger: 'blur'},
+    {type: 'email', message: "Email pas bon", trigger: ['blur', 'change']},
   ],
   message: [
-    {required: true, message: t(form_message_required.value), trigger: 'blur'},
+    {required: true, message: "Message requis", trigger: 'blur'},
   ],
 };
 
@@ -42,11 +35,11 @@ async function submitForm() {
 
     // Si le formulaire est valide, afficher le popup de confirmation
     ElMessageBox.confirm(
-        t('contact.confirmation_popup'),
+        "Confirmation",
         'Confirmation',
         {
-          confirmButtonText: t('form.submit'),
-          cancelButtonText: t('form.cancel'),
+          confirmButtonText: "Confirmer",
+          cancelButtonText: "Annuler",
           type: 'warning',
         }
     )
@@ -57,60 +50,59 @@ async function submitForm() {
             const response = await sendContactForm(contactForm);
             if (!response.success) {
               ElMessage({
-                message: response.message ? t(response.message) : t('sign_in.error_message'),
+                message: response.message ? "Oui" : "OUi",
                 type: 'error',
               });
               return;
             }
 
-            ElMessage.success(t('contact.success_message'));
+            ElMessage.success("Succes");
 
             // Vider le formulaire après succès
             contactForm.email = '';
             contactForm.name = '';
             contactForm.message = '';
           } catch (error) {
-            ElMessage.error(t('contact.error_message'));
+            ElMessage.error("Erreur");
           } finally {
             loading.value = false;
           }
         })
         .catch(() => {
-          ElMessage.info(t('contact.cancel_message'));
+          ElMessage.info("cancel");
         });
   });
 }
 
-const form_mail = ref('form.email');
-const form_name = ref('form.name');
-const form_message = ref('form.message');
+const form_mail ='form.email';
+const form_name = 'form.name';
+const form_message = 'form.message';
 
-const placeholder_email = ref('contact.placeholder.email');
-const placeholder_name = ref('contact.placeholder.name');
-const placeholder_message = ref('contact.placeholder.message');
+const placeholder_email = 'contact.placeholder.email';
+const placeholder_name = 'contact.placeholder.name';
+const placeholder_message = 'contact.placeholder.message';
 </script>
 
 <template>
   <BaseCards class="contact-form">
-    <h1 class="title">{{ t('contact.title') }}</h1>
+    <h1 class="title">Contact</h1>
     <client-only>
       <el-form ref="profileFormRef" :model="contactForm" :rules="contactRules" size="large" label-width="auto">
-        <el-form-item :label=t(form_mail) label-position="top" prop="email">
-          <el-input class="custom-input" v-model="contactForm.email" :placeholder="t(placeholder_email)"
+        <el-form-item :label=form_mail label-position="top" prop="email">
+          <el-input class="custom-input" v-model="contactForm.email" placeholder="Placeholder"
                     type="text"></el-input>
         </el-form-item>
-        <el-form-item :label=t(form_name) label-position="top" prop="name">
-          <el-input v-model="contactForm.name" :placeholder="t(placeholder_name)"
+        <el-form-item :label=form_message label-position="top" prop="name">
+          <el-input v-model="contactForm.name" placeholder="Placeholder"
                     type="text"></el-input>
         </el-form-item>
-        <el-form-item :label=t(form_message) label-position="top" prop="message">
-          <el-input class="custom-input" autosize v-model="contactForm.message" :placeholder="t(placeholder_message)"
+        <el-form-item :label=form_message label-position="top" prop="message">
+          <el-input class="custom-input" autosize v-model="contactForm.message" placeholder="Placeholder"
                     type="textarea"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button round w-full type="primary" @click="submitForm" :loading="loading">{{
-              t('form.submit')
-            }}
+          <el-button round w-full type="primary" @click="submitForm" :loading="loading">
+              Submit
           </el-button>
         </el-form-item>
       </el-form>

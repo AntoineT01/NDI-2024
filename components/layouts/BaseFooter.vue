@@ -1,6 +1,4 @@
 <script setup lang="ts">
-const t = useI18n().t;
-
 const githubUrl = "https://github.com/Flintpop";
 const linkedinUrl = "https://www.linkedin.com/in/tanguy-le-goff/";
 const emailUrl = "mailto:tanguy.legoff2@gmail.com";
@@ -11,7 +9,7 @@ const emailUrl = "mailto:tanguy.legoff2@gmail.com";
     <el-col class="footer-items">
       <el-row justify="center">
         <p>
-          {{ t('footer.main') }}
+          Footer main
         </p>
       </el-row>
       <el-row justify="center" :gutter="50" mt-6 mb-6>
@@ -27,12 +25,12 @@ const emailUrl = "mailto:tanguy.legoff2@gmail.com";
       </el-row>
       <el-row justify="center">
         <p>
-          {{ t('footer.made_by') }}
+          Fait par
         </p>
       </el-row>
       <el-row justify="center">
         <p>
-          {{ t('footer.made_with') }}
+          Hey
         </p>
         <img src="/nuxt_logo2.svg" class="nuxt-logo" alt="nuxt logo">
       </el-row>

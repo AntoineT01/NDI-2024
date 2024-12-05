@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import Subtitle from "~/components/BaseSubtitle.vue";
 
-const t = useI18n().t;
-
 </script>
 
 <template>
   <div>
     <h1 class="hero-text">
-      <span>{{ t('hero.title.first_part') }}</span>
-      <span>{{ t('hero.title.second_part') }}</span>
+      <span>First message</span>
+      <span>Second message</span>
     </h1>
     <subtitle message="hero.subtitle" />
     <CustomAvatar class="mt-10" />

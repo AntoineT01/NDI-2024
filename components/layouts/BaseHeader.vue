@@ -1,23 +1,9 @@
 <script lang="ts" setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
-import { useI18n } from 'vue-i18n';
 import '@fortawesome/fontawesome-free/css/all.css';
 
 const router = useRouter();
-const { t, locale } = useI18n();
-
-const languages = [
-  { value: 'en', label: 'English' },
-  { value: 'fr', label: 'Français' },
-];
-
-const languageCookie = useCookie('i18n_redirected');
-
-function changeLanguage(lang: string) {
-  locale.value = lang;
-  languageCookie.value = lang;
-}
 
 function navigateTo(route: string) {
   router.push(route);
@@ -81,29 +67,10 @@ onBeforeUnmount(() => {
     <div class="navbar-links" ref="linksContainer">
       <ul class="links">
         <li>
-          <el-dropdown class="dropdown">
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item
-                    v-for="lang in languages"
-                    :key="lang.value"
-                    @click="changeLanguage(lang.value)"
-                >
-                  {{ lang.label }}
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-            <el-button round size="large">
-              <i class="mr-2 fa-solid fa-language"></i>
-              {{ t('header.language') }}
-            </el-button>
-          </el-dropdown>
-        </li>
-        <li>
             <NuxtLink to="/contact" @click="navigateTo('/contact')">
               <el-button size="large" round type="primary">
                 <i class="mr-2 fa-solid fa-contact-card"></i>
-                {{ t('header.contact') }}
+                Contact
               </el-button>
 
             </NuxtLink>
@@ -113,26 +80,7 @@ onBeforeUnmount(() => {
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item command="contact" @click="navigateTo('/contact')">
-              {{ t('header.contact') }}
-            </el-dropdown-item>
-            <el-dropdown-item command="language">
-              <el-dropdown>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item
-                        v-for="lang in languages"
-                        :key="lang.value"
-                        @click="changeLanguage(lang.value)"
-                    >
-                      {{ lang.label }}
-                    </el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-                <span class="el-dropdown-link">
-                  {{ t('header.language') }}
-                  <i class="fas fa-caret-right"></i>
-                </span>
-              </el-dropdown>
+              Contact
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -157,11 +105,6 @@ onBeforeUnmount(() => {
   .navbar {
     padding: 30px 200px; /* Plus de padding pour les grands écrans */
   }
-}
-
-.dropdown {
-  display: flex;
-  align-items: center;
 }
 
 .navbar-logo img {

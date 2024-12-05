@@ -14,6 +14,12 @@ We recommend to look at the [Nuxt 3 Docs](https://nuxt.com/) and [Element Plus D
 
 Make sure to install the dependencies
 
+NODE 20 LTS
+
+```bash
+npm install -g pnpm@8.12.1 
+```
+
 ```bash
 pnpm install
 ```
@@ -23,7 +29,7 @@ pnpm install
 Start the development server on `http://localhost:3000`
 
 ```bash
-pnpm dev
+nuxi dev
 ```
 
 More info about [nuxt deployment](https://nuxt.com/docs/getting-started/deployment#presets).
