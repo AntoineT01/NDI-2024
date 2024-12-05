@@ -21,6 +21,7 @@ function clicked(){
   }
   else{
     deaffiche.value=1
+    
   }
   
 
