@@ -6,9 +6,14 @@
       <h2 class="text-2xl font-semibold mb-4">Mes Projets Récents</h2>
 
     </div>
+    <div>
+      <gameTcha  :onSuccess="handleSuccess" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// Aucune logique spécifique n'est nécessaire pour l'instant
-</script>
+const handleSuccess = () => {
+  // Rediriger vers la page suivante ou débloquer le contenu
+  navigateTo('/page-protegee')
+}</script>
