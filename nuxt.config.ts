@@ -1,74 +1,63 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-    devtools: {enabled: true},
-    nitro: {
-        preset: 'vercel',
+  modules: [
+    '@pinia/nuxt',
+    '@nuxt/content',
+    '@nuxtjs/tailwindcss',
+    '@nuxt/image'
+  ],
+  css: ['~/assets/css/tailwind.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
     },
-    compatibilityDate: '2024-08-18',
-    build: {
-        transpile: ['@popperjs/core'],
-    },
-    app: {
-        // head
-        head: {
-            title: 'nuitinfo',
-            meta: [
-                {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-                {
-                    hid: 'description',
-                    name: 'description',
-                    content: 'ifno',
-                },
-            ],
-            link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+  },
+
+  build: {
+    transpile: ['pinia']
+  },
+
+  pinia: {
+    autoImports: ['defineStore', 'storeToRefs']
+  },
+
+  imports: {
+    dirs: ['stores']
+  },
+
+  vite: {
+    optimizeDeps: {
+      include: ['pinia']
+    }
+  },
+  app: {
+    head: {
+      title: 'Accueil', // Ceci sera le titre par défaut
+      titleTemplate: '%s - Mon Portfolio', // Ceci permet d'ajouter un suffixe à chaque titre de page
+      meta: [
+        { name: 'description', content: 'Mon portfolio personnel' }
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon3.ico' }
+      ],
+      script: [
+        {
+          innerHTML: `
+            (function() {
+              const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+              document.documentElement.classList.toggle('dark', theme === 'dark');
+            })();
+          `,
+          type: 'text/javascript',
         },
-        pageTransition: {name: 'page', mode: 'out-in'},
-    },
+      ],
+    }
+  },
+  components: {
+    global: true,
+    dirs: ['~/components']
+  },
 
-    // css
-    css: ['~/assets/scss/index.scss', '@/assets/scss/scrollbar.scss'],
-
-    typescript: {
-        strict: true,
-        shim: false,
-    },
-
-    // build modules
-    modules: [
-        '@vueuse/nuxt',
-        '@unocss/nuxt',
-        '@pinia/nuxt',
-        '@element-plus/nuxt',
-        '@nuxtjs/color-mode',
-    ],
-
-    // vueuse
-    vueuse: {
-        ssrHandlers: true,
-    },
-
-    // colorMode
-    colorMode: {
-        classSuffix: '',
-    },
-
-    unocss: {
-        uno: true,
-        attributify: true,
-        icons: {
-            scale: 1.2,
-        },
-    },
-    vite: {
-        css: {
-            preprocessorOptions: {
-                scss: {
-                    additionalData: `@use "@/assets/scss/element/index.scss" as element;`,
-                },
-            },
-        },
-    },
-    elementPlus: {
-        icon: 'ElIcon',
-        importStyle: 'scss',
-    },
+  compatibilityDate: '2024-09-24'
 })

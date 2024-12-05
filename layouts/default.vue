@@ -1,22 +1,17 @@
-<script setup lang="ts">
-import BaseHeader from "~/components/layouts/BaseHeader.vue";
-import BaseFooter from "~/components/layouts/BaseFooter.vue";
-</script>
-
 <template>
-  <div>
-    <el-header>
-      <BaseHeader/>
-    </el-header>
-    <slot/>
-    <el-footer>
-      <BaseFooter/>
-    </el-footer>
+  <div class="min-h-screen flex flex-col bg-background-light dark:bg-background-dark">
+    <Navbar />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <footer class="bg-primary-light dark:bg-primary-dark text-text-light dark:text-text-dark py-4">
+      <div class="container mx-auto px-4 text-center">
+        <p>&copy; {{ new Date().getFullYear() }} Mon Portfolio. Tous droits réservés.</p>
+      </div>
+    </footer>
   </div>
 </template>
 
-<style scoped lang="scss">
-::v-deep(.el-footer) {
-  --el-footer-padding: 0;
-}
-</style>
+<script setup lang="ts">
+import Navbar from '~/components/Navbar.vue'
+</script>
