@@ -4,6 +4,7 @@
       <header class="mb-8">
         <h1 class="text-4xl font-bold text-secondary mb-2">{{ cv.name }}</h1>
         <p class="text-xl text-gray-300">{{ cv.profession }}</p>
+        
       </header>
 
       <main>
@@ -18,6 +19,7 @@
                 :title="project.title"
                 :description="project.description"
             />
+            <Popup v-if="isModalOpen" @close="closeModal"/>
           </div>
         </section>
     </main>
@@ -28,10 +30,21 @@
 <script setup lang="ts">
 import { useProjectsStore } from '~/stores/projects'
 import CV from '~/components/CV.vue'
+import Popup from '~/components/Popup.vue'
 
 useHead({
   title: 'CV'
 })
+
+const isModalOpen = ref(true)
+
+const openModal = () => {
+  isModalOpen.value = true
+}
+
+const closeModal = () => {
+  isModalOpen.value = false
+}
 
 // Charger le contenu du CV depuis le fichier JSON
 const { data: cv } = await useAsyncData('cv', () => queryContent('cv').findOne())
