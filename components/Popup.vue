@@ -1,4 +1,5 @@
 <template>
+  <Transition name="modal-fade">
   <div v-if="modelValue" class="modal">
     <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center bg-blue-500"  >
       <div class="bg-white border-1 border-black rounded-lg shadow-lg text-right flex-column w-1/2">
@@ -30,6 +31,7 @@
       </div>
     </div>
   </div>
+  </Transition>
   </template>
   
   <script>
@@ -50,7 +52,16 @@
   
   </script>
   
-  <style scoped>
+  <style>
   /* Styles optionnels pour le modal */
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity 0.5s;
+  }
+
+  .modal-fade-enter,
+  .modal-fade-leave-to {
+    opacity: 0;
+  }
   </style>
   
