@@ -1,5 +1,6 @@
 <template>
-    <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center bg-blue-500">
+  <div v-if="modelValue" class="modal">
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center bg-blue-500"  >
       <div class="bg-white border-1 border-black rounded-lg shadow-lg text-right flex-column w-1/2">
         <div class="bg-white border-1 border-black rounded-lg p-4 shadow-lg w-full text-right flex flex-row h-[400px]">
           <div class = "">
@@ -14,7 +15,7 @@
             Il joue un rôle fondamental dans la circulation sanguine, agissant comme une pompe pour faire circuler le sang dans tout le corps. </p>
          </div>
           <div>
-            <button @click="close" class=" px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-white">
+            <button @click="emitClose" class=" px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-white">
               <p> X </p>
             </button>
           </div>
@@ -28,16 +29,25 @@
         </div>
       </div>
     </div>
+  </div>
   </template>
   
-  <script setup>
-  import { defineEmits } from 'vue'
+  <script>
+
+  export default {
+  props: {
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  methods: {
+    emitClose() {
+      this.$emit("update:modelValue", false); // Notify the parent to update its state
+    },
+  },
+};
   
-  const emit = defineEmits()
-  
-  const close = () => {
-    emit('close')
-  }
   </script>
   
   <style scoped>

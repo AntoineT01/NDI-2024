@@ -1,31 +1,30 @@
 
 <template>
   <div class="container mx-auto px-4 py-8">
-    <button @click="clicked">test</button>
-    <popuptest v-if="affiche"/>
-    <img src="~/public/sketch_peau.jpg"  @click="clicked">
+    
+    
+    <img src="~/assets/images/coeur.png"  @click="isComponentVisible = true">
+    <Popup v-model="isComponentVisible" />
   </div>
 </template>
 
-<script setup lang="ts">
+<script>
 // Aucune logique spécifique n'est nécessaire pour l'instant
-import  popuptest from '~/components/popuptest.vue'
-const affiche=ref(false)
-const deaffiche=ref(0)
-function clicked(){
-  affiche.value=true
-
-  if(deaffiche.value==1){
-    affiche.value=false
-    deaffiche.value=0
-  }
-  else{
-    deaffiche.value=1
-
-  }
+import  Popup from '~/components/Popup.vue'
 
 
-}
+
+export default {
+  components: {
+    Popup,
+  },
+  data() {
+    return {
+      isComponentVisible: false, // Tracks open/close state
+    };
+  },
+};
+
 
 
 </script>
