@@ -17,7 +17,7 @@
       <div class="modal-content">
         <!-- En-tête -->
         <div class="modal-header">
-          <h2 class="game-title">Puissance 4 vs IA</h2>
+          <h2 class="game-title">CATCHA - Puissance 4 vs IA</h2>
           <button v-if="winner === 1" @click="closeGame" class="close-button">×</button>
         </div>
 
@@ -385,6 +385,7 @@ export default {
 .game-title {
   font-size: 28px;
   margin: 0;
+  color: white;
 }
 
 .close-button {
