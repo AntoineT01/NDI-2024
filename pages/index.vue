@@ -12,7 +12,7 @@ import HumanBody from "~/components/HumanBody.vue";
 
 <style>
 body {
-  background-image:url("images/background/fond.png") !important;
+  background-image: url('/images/background/fond.png');  /* Ajout du point-virgule */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
