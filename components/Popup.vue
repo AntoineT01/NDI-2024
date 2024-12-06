@@ -17,17 +17,13 @@
               <button @click="close" class=" px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 text-white"> <p> X </p> </button>
             </div>
           </div>
-          <div class = "bg-white border-1 border-black rounded-lg p-4 shadow-lg w-full text-left text-black">
-            <p class = "ml-8 underline"> {{ fluidTitle }} </p>
-            <br>
-            <p class = "ml-8"> - {{ text }} </p>
-            <br>
-            <p class = "ml-8"> - {{ extraInfo }} </p>
+          <div class="bg-white border-1 border-black rounded-lg p-4 shadow-lg w-full text-left text-black">
+            <div v-for="(info, index) in infoComplementaire" :key="index">
+              <p class="ml-8 font-bold underline">{{ info.titre }}</p>
+              <p class="ml-8 mb-4">{{ info.contenu }}</p>
+            </div>
           </div>
         </div>
-<!--        <div class="mt-10 p-6 bg-red-200 rounded-full shadow-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">-->
-<!--          <p class="text-xl font-semibold text-red-600">Coupe !</p>-->
-<!--        </div>-->
       </div>
   </template>
 
@@ -36,33 +32,15 @@
 import { defineProps } from 'vue'
 
 // Définition des props
-const props = defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  src: {
-    type: String,
-    required: true
-  },
-  fluidTitle: {
-    type: String,
-    default: 'Circulation fluide'
-  },
-  fluidText: {
+defineProps({
+  title: String,
+  description: String,
+  src: String,
+  infoComplementaire: {
     type: Array,
-    default: () => []
+    default: () => [],
   },
-  extraInfo: {
-    type: String,
-    default: ''
-  }
-})
-
+});
 const emit = defineEmits()
 // Fonction pour fermer le pop-up
 const close = () => {

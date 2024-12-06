@@ -130,10 +130,8 @@ const activeOrgan = ref(null); // État pour l'organe actif
         v-if="activeOrgan"
         :title="`${activeOrgan.titre}`"
         :description="`${activeOrgan.description}`"
-        src="/assets/images/coeur.png"
-        :fluidTitle="'Circulation fluide'"
-        :fluidText="['Le sang circule dans le corps via le système cardiovasculaire.', 'Les courants marins agissent comme un système circulatoire.']"
-        :extraInfo="'Information supplémentaire sur la circulation du sang et des courants marins.'"
+        :src="`${activeOrgan.src}`"
+        :infoComplementaire="JSON.parse(JSON.stringify(activeOrgan.info_complementaire))"
         @close="closeModal"
     />
   </div>

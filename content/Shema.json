@@ -1,8 +1,12 @@
 {
   "PARTIES_NORMALES": {
     "coeur": {
-      "description": "Circulation fluide",
+      "description": "Le cœur est un organe essentiel qui agit comme une pompe pour faire circuler le sang dans tout le corps. Il transporte l'oxygène, les nutriments, et les déchets métaboliques. En parallèle, les courants océaniques jouent un rôle similaire pour répartir la chaleur, les nutriments, et les gaz dissous à travers le globe, garantissant un équilibre écologique.",
       "titre": "Le cœur",
+      "src": "/assets/human_body/sketch_coeur.png",
+      "position": { "top": "39%", "left": "60%" },
+      "size": "10%",
+      "zIndex": 10,
       "info_complementaire": [
         {
           "titre": "Être humain",
@@ -15,8 +19,12 @@
       ]
     },
     "poumon": {
-      "description": "Respiration et échange gazeux",
+      "description": "Les poumons jouent un rôle vital dans l'échange gazeux, absorbant l'oxygène et éliminant le dioxyde de carbone. De manière parallèle, les océans sont également impliqués dans les échanges gazeux, fournissant une grande partie de l'oxygène nécessaire à la vie sur Terre.",
       "titre": "Les poumons",
+      "src": "/assets/human_body/sketch_poumons.png",
+      "position": { "top": "37%", "left": "57%" },
+      "size": "30%",
+      "zIndex": 1,
       "info_complementaire": [
         {
           "titre": "Être humain",
@@ -28,9 +36,31 @@
         }
       ]
     },
+    "epiderme/peau": {
+      "description": "La peau humaine est une barrière protectrice qui régule la température corporelle et l'équilibre hydrique. L'océan, tout comme la peau, joue un rôle vital en régulant le climat global et en équilibrant les cycles chimiques.",
+      "titre": "La peau",
+      "src": "/assets/human_body/sketch_peau.png",
+      "position": { "top": "42%", "left": "25%" },
+      "size": "13%",
+      "zIndex": 1,
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "Le corps humain maintient son équilibre interne grâce à l'homéostasie. Par exemple, la température corporelle, le pH sanguin, et l'équilibre hydrique sont régulés en permanence."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "L'océan régule le climat global en absorbant et redistribuant la chaleur, en régulant le cycle du carbone, et en maintenant l'équilibre chimique de ses eaux."
+        }
+      ]
+    },
     "jambe": {
-      "description": "Composition chimique similaire",
+      "description": "Les jambes permettent la mobilité et jouent un rôle clé dans l'équilibre du corps. La composition chimique du plasma humain est comparable à celle de l’eau de mer, soulignant des connexions évolutives fascinantes entre les organismes et leur environnement marin.",
       "titre": "Les jambes",
+      "src": "/assets/human_body/sketch_os.webp",
+      "position": { "top": "80%", "left": "78%" },
+      "size": "13%",
+      "zIndex": 1,
       "info_complementaire": [
         {
           "titre": "Être humain",
@@ -42,13 +72,35 @@
         }
       ]
     },
+    "sueur": {
+      "description": "La sueur est essentielle pour réguler la température corporelle grâce à l'évaporation. À l'échelle planétaire, l'océan agit de manière similaire en absorbant la chaleur et en la redistribuant pour équilibrer le climat global.",
+      "titre": "La sueur",
+      "src": "/assets/human_body/sketch_sueur.webp",
+      "position": { "top": "45%", "left": "82%" },
+      "size": "13%",
+      "zIndex": 1,
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "La sueur aide à évacuer la chaleur corporelle, en régulant la température via l'évaporation à la surface de la peau."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "Les océans absorbent la majeure partie de la chaleur excédentaire générée par le réchauffement climatique, redistribuant cette énergie pour maintenir un équilibre thermique global."
+        }
+      ]
+    },
     "estomac": {
-      "description": "Fonctionnement comme un écosystème",
+      "description": "L'estomac humain fonctionne comme un écosystème, interagissant avec des micro-organismes pour faciliter la digestion et maintenir un équilibre. Les écosystèmes marins jouent un rôle similaire en régulant les cycles biogéochimiques et en soutenant la vie marine.",
       "titre": "L'estomac",
+      "src": "/assets/human_body/sketch_systeme_digestif.png",
+      "position": { "top": "51%", "left": "58%" },
+      "size": "13%",
+      "zIndex": 1,
       "info_complementaire": [
         {
           "titre": "Microbiote humain",
-          "contenu": "Chez l'Humain, les micro-organismes interagissent pour maintenir un équilibre qui influence la digestion, l’immunité, et même le cerveau (axe microbiote-intestin-cerveau). Par exemple le microbiote aide à digérer les aliments, produire des vitamines (comme la vitamine K), et métaboliser des composés."
+          "contenu": "Chez l'Humain, les micro-organismes interagissent pour maintenir un équilibre qui influence la digestion, l’immunité, et même le cerveau."
         },
         {
           "titre": "Océan",
@@ -57,8 +109,12 @@
       ]
     },
     "cerveau": {
-      "description": "Énergies cycliques",
+      "description": "Le cerveau régule les fonctions vitales et les rythmes biologiques, tels que le cycle circadien. Dans les océans, les marées suivent également des rythmes réguliers, influençant les écosystèmes marins et côtiers.",
       "titre": "Le cerveau",
+      "src": "/assets/human_body/sketch_systeme_nerveux_central.png",
+      "position": { "top": "27%", "left": "61%" },
+      "size": "17%",
+      "zIndex": 1,
       "info_complementaire": [
         {
           "titre": "Être humain",
@@ -67,60 +123,6 @@
         {
           "titre": "Océan",
           "contenu": "Les marées, influencées par la gravité lunaire, suivent des cycles réguliers qui rythment la vie marine et côtière."
-        }
-      ]
-    },
-    "epiderme/peau": {
-      "description": "Régulation et équilibre",
-      "titre": "La peau",
-      "info_complementaire": [
-        {
-          "titre": "Être humain",
-          "contenu": "Le corps humain maintient son équilibre interne grâce à l'homéostasie. Par exemple, la température corporelle, le pH sanguin, et l'équilibre hydrique sont régulés en permanence."
-        },
-        {
-          "titre": "Océan",
-          "contenu": "L'océan régule le climat global en absorbant et redistribuant la chaleur, en régulant le cycle du carbone, et en maintenant l'équilibre chimique de ses eaux."
-        }
-      ]
-    }
-  },
-  "PARTIES_ANORMALES": {
-    "estomac": {
-      "description": "Pollution (problème de digestion)",
-      "titre": "L'estomac pollué",
-      "info_complementaire": [
-        {
-          "titre": "Plastiques",
-          "contenu": "Les déchets plastiques s’accumulent dans l’océan, formant des 'îles' de plastique et affectant la faune marine."
-        },
-        {
-          "titre": "Microplastiques",
-          "contenu": "Ingestés par les animaux marins, ils entrent dans la chaîne alimentaire, y compris humaine."
-        }
-      ]
-    },
-    "peau": {
-      "description": "Réchauffement climatique",
-      "titre": "La peau et la chaleur",
-      "info_complementaire": [
-        {
-          "titre": "Augmentation de la température de l’eau",
-          "contenu": "Perturbe les habitats marins et provoque le blanchissement des coraux."
-        },
-        {
-          "titre": "Acidification des océans",
-          "contenu": "Le CO₂ absorbé par l’eau rend les océans plus acides, affectant les coquillages, les coraux et le plancton."
-        }
-      ]
-    },
-    "coeur": {
-      "description": "Effondrement des courants océaniques",
-      "titre": "Le cœur perturbé",
-      "info_complementaire": [
-        {
-          "titre": "Circulation perturbée",
-          "contenu": "Des changements dans les courants océaniques affectent le climat mondial."
         }
       ]
     }
