@@ -79,11 +79,12 @@ import jsonData from '~/content/Shema.json';
 const gameActivated = ref(true);
 const showEndModal = ref(false);
 const shouldShowEndModal = ref(false);
+const gameAlreadyWon = ref(false);
 
 const toggleOrgan = (currentOrgan: string) => {
   const organ = organs.value.find((o) => o.name === currentOrgan);
 
-  if (organ?.name === 'coeur' && gameActivated.value) {
+  if (organ?.name === 'coeur' && gameActivated.value && !gameAlreadyWon.value) {
     showGameModal.value = true;
   }
 
@@ -119,6 +120,7 @@ const closeEndModal = () => {
 
 const closeGameModal = () => {
   showGameModal.value = false;
+  gameAlreadyWon.value = true;
 };
 
 const activeOrgan = ref(null); // État pour l'organe actif
