@@ -33,10 +33,10 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Accueil', // Ceci sera le titre par défaut
-      titleTemplate: '%s - Mon Portfolio', // Ceci permet d'ajouter un suffixe à chaque titre de page
+      title: 'NDI 2024', // Ceci sera le titre par défaut
+      titleTemplate: '%s - TUX', // Ceci permet d'ajouter un suffixe à chaque titre de page
       meta: [
-        { name: 'description', content: 'Mon portfolio personnel' }
+        { name: 'description', content: 'NDI - 2024 - TUX' }
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon3.ico' }
