@@ -61,7 +61,16 @@ const organs = ref([
     size: '13%',
     visible: false,
     zIndex: 1,
-    next: 'bone',
+    next: 'nervous_system',
+  },
+  {
+    name: 'nervous_system',
+    src: '/assets/human_body/sketch_systeme_nerveux_central.png',
+    alt: 'Image d\'un systeme nerveux central',
+    position: { top: '27%', left: '61%' },
+    size: '17%',
+    visible: false,
+    zIndex: 1,
   },
 ]);
 
