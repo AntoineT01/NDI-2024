@@ -1,23 +1,13 @@
-<!-- pages/example.vue -->
-<template>
-  <div>
-    <h1>Ma page protégée</h1>
-
-    <GameModal @verified="handleVerification" />
-
-    <!-- Contenu qui apparaît une fois vérifié -->
-    <div v-if="isVerified">
-      Contenu secret débloqué !
-    </div>
-  </div>
+Copy<template>
+  <Puissance4 />
 </template>
 
-<script setup>
-const isVerified = ref(false)
+<script>
+import Puissance4 from './components/Puissance4.vue'
 
-const handleVerification = () => {
-  isVerified.value = true
-  // Vous pouvez aussi rediriger ou faire d'autres actions
-  // navigateTo('/protected')
+export default {
+  components: {
+    Puissance4
+  }
 }
 </script>
