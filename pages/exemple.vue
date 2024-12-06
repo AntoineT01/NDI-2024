@@ -1,13 +1,15 @@
-Copy<template>
-  <Puissance4 />
+<template>
+  <div id="app">
+    <Tetris />
+  </div>
 </template>
 
 <script>
-import Puissance4 from './components/Puissance4.vue'
+import Tetris from './components/Tetris.vue'
 
 export default {
   components: {
-    Puissance4
+    Tetris
   }
 }
 </script>
