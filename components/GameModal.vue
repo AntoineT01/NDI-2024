@@ -1,11 +1,7 @@
 <!-- components/GameModal.vue -->
 <template>
   <div>
-    <button @click="showModal = true" class="open-btn">
-      Vérifier que vous êtes humain
-    </button>
-
-    <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
+    <div class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
         <button class="close-btn" @click="closeModal">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -25,14 +21,17 @@ import GameTcha from './GameTcha.vue'
 
 const showModal = ref(false)
 const gameComponent = ref(null)
-const emit = defineEmits(['verified'])
+const emit = defineEmits(['close', 'verified']);
+
+onMounted(() => {
+  showModal.value = true
+})
 
 const closeModal = () => {
-  showModal.value = false
+  emit('close');
 }
 
 const handleSuccess = () => {
-  showModal.value = false
   emit('verified')
 }
 
@@ -64,8 +63,8 @@ watch(showModal, (newValue) => {
   padding: 2rem;
   border-radius: 8px;
   position: relative;
-  width:  50em;   /* Largeur fixe */
-  height: 50em;   /* Hauteur fixe */
+  width:  55em;   /* Largeur fixe */
+  height: 58em;   /* Hauteur fixe */
   display: flex;   /* Pour centrer le contenu */
   flex-direction: column;
   align-items: center;

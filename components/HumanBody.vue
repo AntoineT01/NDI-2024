@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import {ref} from 'vue';
 import Organ from './Organ.vue';
 
 const organs = ref([
@@ -7,7 +7,7 @@ const organs = ref([
     name: 'coeur',
     src: '/assets/human_body/sketch_coeur.png',
     alt: 'Image d\'un coeur',
-    position: { top: '39%', left: '60%' },
+    position: {top: '39%', left: '60%'},
     size: '10%',
     visible: true,
     zIndex: 10,
@@ -17,7 +17,7 @@ const organs = ref([
     name: 'poumon',
     src: '/assets/human_body/sketch_poumons.png',
     alt: 'Image d\'un poumon',
-    position: { top: '37%', left: '57%' },
+    position: {top: '37%', left: '57%'},
     size: '30%',
     visible: false,
     zIndex: 1,
@@ -27,7 +27,7 @@ const organs = ref([
     name: 'epiderme/peau',
     src: '/assets/human_body/sketch_peau.png',
     alt: 'Image d\'une peau',
-    position: { top: '42%', left: '25%' },
+    position: {top: '42%', left: '25%'},
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -37,7 +37,7 @@ const organs = ref([
     name: 'jambe',
     src: '/assets/human_body/sketch_os.webp',
     alt: 'Image d\'un os',
-    position: { top: '80%', left: '78%' },
+    position: {top: '80%', left: '78%'},
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -47,7 +47,7 @@ const organs = ref([
     name: 'sueur',
     src: '/assets/human_body/sketch_sueur.webp',
     alt: 'Image d\'une sueur',
-    position: { top: '45%', left: '82%' },
+    position: {top: '45%', left: '82%'},
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -57,7 +57,7 @@ const organs = ref([
     name: 'estomac',
     src: '/assets/human_body/sketch_systeme_digestif.png',
     alt: 'Image d\'une sueur',
-    position: { top: '51%', left: '58%' },
+    position: {top: '51%', left: '58%'},
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -67,7 +67,7 @@ const organs = ref([
     name: 'cerveau',
     src: '/assets/human_body/sketch_systeme_nerveux_central.png',
     alt: 'Image d\'un systeme nerveux central',
-    position: { top: '27%', left: '61%' },
+    position: {top: '27%', left: '61%'},
     size: '17%',
     visible: false,
     zIndex: 1,
@@ -78,8 +78,11 @@ import jsonData from '~/content/Shema.json';
 
 const toggleOrgan = (currentOrgan: string) => {
   const organ = organs.value.find((o) => o.name === currentOrgan);
+
+  if (organ?.name === 'coeur') {
+    showGameModal.value = true;
+  }
   const organData = jsonData['PARTIES_NORMALES'][currentOrgan]; // Récupère les données du JSON
-  console.log(jsonData)
   if (organData) {
     activeOrgan.value = {
       name: currentOrgan,
@@ -106,12 +109,18 @@ const closeModal = () => {
   activeOrgan.value = null;
 }
 
+const closeGameModal = () => {
+  showGameModal.value = false;
+};
+
 const activeOrgan = ref(null); // État pour l'organe actif
+const heartOrgan = ref(false); // État pour l'organe actif
+const showGameModal = ref(false); // Contrôle l'ouverture du GameModal
 </script>
 
 <template>
   <div class="human_container">
-    <img src="/assets/human_body/sketch_personnage.png" alt="Image d'un humain" class="human_body" />
+    <img src="/assets/human_body/sketch_personnage.png" alt="Image d'un humain" class="human_body"/>
     <Organ
         v-for="organ in organs"
         v-if="!activeOrgan"
@@ -126,8 +135,10 @@ const activeOrgan = ref(null); // État pour l'organe actif
         :onClick="() => toggleOrgan(organ.name)"
     />
 
+    <GameModal v-if="showGameModal" @close="closeGameModal" @verified="closeGameModal"/>
+
     <Popup
-        v-if="activeOrgan"
+        v-if="activeOrgan && !heartOrgan"
         :title="`${activeOrgan.titre}`"
         :description="`${activeOrgan.description}`"
         :src="`${activeOrgan.src}`"

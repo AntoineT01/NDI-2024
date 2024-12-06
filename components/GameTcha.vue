@@ -42,6 +42,8 @@ const score = ref(0);
 const gameLoop = ref(null);
 const gameBoard = ref(null);
 
+const scoreToWin = ref(5);
+
 const emit = defineEmits(['success']);
 
 // Fonction pour obtenir la rotation selon la direction et le type de segment
@@ -149,7 +151,7 @@ const moveSnake = () => {
   if (head.x === food.value.x && head.y === food.value.y) {
     food.value = generateFood();
     score.value++;
-    if (score.value >= 5) {
+    if (score.value >= scoreToWin.value) {
       clearInterval(gameLoop.value);
       emit('success');
     }
@@ -234,9 +236,9 @@ defineExpose({
   <div class="snake-game">
     <div class="game-header">
       <h2>Snake CAPTCHA</h2>
-      <div v-if="isRunning" class="score">Score: {{ score }}/5</div>
+      <div v-if="isRunning" class="score">Score: {{ score }}/{{ scoreToWin }}</div>
       <div v-if="isRunning " class="instructions">
-        Utilisez les flèches du clavier pour collecter 5 déchets afin de réussir le CAPTCHA.
+        Utilisez les flèches du clavier pour collecter {{ scoreToWin }} déchets afin de réussir le CAPTCHA.
       </div>
     </div>
 
@@ -278,7 +280,7 @@ defineExpose({
     <div v-if="gameOver" class="game-over-overlay">
       <div class="game-over">Vous n'êtes pas un humain !</div>
       <div class="game-over">Vous avez collecté {{ score }} déchets.</div>
-      <div class="game-over">Collectez 5 déchets pour réussir le CAPTCHA.</div>
+      <div class="game-over">Collectez {{ scoreToWin }} déchets pour réussir le CAPTCHA.</div>
       <button @click="resetGame" class="reset-btn">
         Réessayer
       </button>
