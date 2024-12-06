@@ -42,7 +42,7 @@ const score = ref(0);
 const gameLoop = ref(null);
 const gameBoard = ref(null);
 
-const scoreToWin = ref(1);
+const scoreToWin = ref(5);
 
 const emit = defineEmits(['success']);
 
