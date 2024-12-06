@@ -41,10 +41,10 @@ const organs = ref([
     size: '13%',
     visible: false,
     zIndex: 1,
-    next: 'sweat',
+    next: 'sueur',
   },
   {
-    name: 'sweat',
+    name: 'sueur',
     src: '/assets/human_body/sketch_sueur.webp',
     alt: 'Image d\'une sueur',
     position: { top: '45%', left: '82%' },
