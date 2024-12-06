@@ -1,69 +1,128 @@
 {
-    "PARTIES_NORMALES": {
-      "coeur": {
-        "description": "Circulation fluide",
-        "Être humain": "Le sang circule dans le corps via le système cardiovasculaire, transportant l’oxygène, les nutriments, et les déchets.",
-        "Océan": "Les courants marins agissent comme un système circulatoire, transportant la chaleur, les nutriments, et les gaz dissous à travers le globe."
-      },
-      "poumon": {
-        "description": "Respiration et échange gazeux",
-        "Être humain": "Les poumons assurent les échanges d'oxygène et de dioxyde de carbone, essentiels au maintien des fonctions vitales.",
-        "Océan": "L’oxygène est utilisé par les organismes marins pour respirer et le phytoplancton produit environ 50 % de l'oxygène sur Terre. Les océans respirent donc en quelque sorte grâce au phytoplancton, et aux échanges gazeux à la surface de l’eau."
-      },
-      "jambe": {
-        "description": "Composition chimique similaire",
-        "Être humain": "Le corps humain est composé d’environ 60 % d’eau salée. La composition ionique du plasma sanguin est similaire à celle de l’eau de mer (notamment en sodium et en chlorure).",
-        "Océan": "L'eau de mer contient des sels et des minéraux en proportions proches de celles trouvées dans les fluides corporels."
-      },
-      "estomac": {
-        "description": "Fonctionnement comme un écosystème",
-        "Microbiote humain": "Chez l'Humain, les micro-organismes interagissent pour maintenir un équilibre qui influence la digestion, l’immunité, et même le cerveau (axe microbiote-intestin-cerveau). Par exemple le microbiote aide à digérer les aliments, produire des vitamines (comme la vitamine K), et métaboliser des composés. Le microbiote dépend aussi de l’hôte humain pour les nutriments et pour garder un environnement stable. En retour, il protège contre les pathogènes et soutient les fonctions vitales.",
-        "Océan": "Les chaînes alimentaires et les interactions entre espèces (prédateurs, proies, symbiose) régulent les écosystèmes marins, jouant un rôle dans le climat et les cycles biogéochimiques. Les organismes marins (notamment le phytoplancton) produisent de l'oxygène, capturent du carbone, et participent au recyclage des nutriments dans les écosystèmes marins. Les êtres vivants dans l’océan dépendent de l’environnement marin pour les nutriments, la lumière (pour les organismes photosynthétiques), et la stabilité. Ils contribuent également à l’équilibre de l’écosystème (par exemple, les récifs coralliens protégeant les côtes)."
-      },
-      "cerveau": {
-        "description": "Énergies cycliques",
-        "Être humain": "Les rythmes biologiques (comme le cycle circadien) régulent le sommeil, l'activité, et les fonctions métaboliques.",
-        "Océan": "Les marées, influencées par la gravité lunaire, suivent des cycles réguliers qui rythment la vie marine et côtière."
-      },
-      "epiderme/peau": {
-        "description": "Régulation et équilibre",
-        "Être humain": "Le corps humain maintient son équilibre interne grâce à l'homéostasie. Par exemple, la température corporelle, le pH sanguin, et l'équilibre hydrique sont régulés en permanence.",
-        "Océan": "L'océan régule le climat global en absorbant et redistribuant la chaleur, en régulant le cycle du carbone, et en maintenant l'équilibre chimique de ses eaux."
-      }
+  "PARTIES_NORMALES": {
+    "coeur": {
+      "description": "Circulation fluide",
+      "titre": "Le cœur",
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "Le sang circule dans le corps via le système cardiovasculaire, transportant l’oxygène, les nutriments, et les déchets."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "Les courants marins agissent comme un système circulatoire, transportant la chaleur, les nutriments, et les gaz dissous à travers le globe."
+        }
+      ]
     },
-    "PARTIES_ANORMALES": {
-      "estomac": {
-        "description": "Pollution (problème de digestion)",
-        "Plastiques": "Les déchets plastiques s’accumulent dans l’océan, formant des 'îles' de plastique et affectant la faune marine.",
-        "Produits chimiques": "Les pesticides, engrais, et produits toxiques polluent les eaux.",
-        "Déchets industriels": "Les déversements de pétrole et les rejets industriels endommagent les écosystèmes.",
-        "Microplastiques": "Ingestés par les animaux marins, ils entrent dans la chaîne alimentaire, y compris humaine.",
-        "Accumulations massives": "Des gyres océaniques comme le 'continent de plastique' dans le Pacifique."
-      },
-      "peau": {
-        "description": "Réchauffement climatique (sueur/rougeur/température)",
-        "Augmentation de la température de l’eau": "Perturbe les habitats marins et provoque le blanchissement des coraux.",
-        "Fonte des glaces": "Change la salinité et les courants océaniques.",
-        "Acidification des océans": "Le CO₂ absorbé par l’eau rend les océans plus acides, affectant les coquillages, les coraux et le plancton."
-      },
-      "maladie": {
-        "description": "Surpêche & Perte de biodiversité (maladie)",
-        "Espèces en déclin": "Certaines espèces sont surexploitées, menaçant leur extinction.",
-        "Destruction des habitats": "Les méthodes comme le chalutage détruisent les fonds marins.",
-        "Extinction d’espèces": "La pollution, le changement climatique, et la surpêche réduisent la biodiversité marine.",
-        "Destruction des récifs coralliens": "Ces écosystèmes riches sont en danger.",
-        "Mangroves et herbiers marins": "Détruits par l’urbanisation et l’agriculture.",
-        "Espèces invasives": "Introduites accidentellement par les activités humaines, elles perturbent les écosystèmes locaux.",
-        "Perturbation de la faune": "Les bruits liés aux navires, aux forages, et aux activités militaires dérangent les mammifères marins comme les baleines et les dauphins."
-      },
-      "coeur": {
-        "description": "Effondrement des courants océaniques",
-        "Circulation perturbée": "Des changements dans les courants océaniques affectent le climat mondial."
-      },
-      "gros_ventre": {
-        "description": "Montée du niveau de la mer",
-        "Inondations côtières": "Menace les villes côtières et les populations.",
-        "Perte d’habitats": "Affecte les mangroves et les zones humides."
-      }
+    "poumon": {
+      "description": "Respiration et échange gazeux",
+      "titre": "Les poumons",
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "Les poumons assurent les échanges d'oxygène et de dioxyde de carbone, essentiels au maintien des fonctions vitales."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "L’oxygène est utilisé par les organismes marins pour respirer et le phytoplancton produit environ 50 % de l'oxygène sur Terre. Les océans respirent donc en quelque sorte grâce au phytoplancton, et aux échanges gazeux à la surface de l’eau."
+        }
+      ]
+    },
+    "jambe": {
+      "description": "Composition chimique similaire",
+      "titre": "Les jambes",
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "Le corps humain est composé d’environ 60 % d’eau salée. La composition ionique du plasma sanguin est similaire à celle de l’eau de mer (notamment en sodium et en chlorure)."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "L'eau de mer contient des sels et des minéraux en proportions proches de celles trouvées dans les fluides corporels."
+        }
+      ]
+    },
+    "estomac": {
+      "description": "Fonctionnement comme un écosystème",
+      "titre": "L'estomac",
+      "info_complementaire": [
+        {
+          "titre": "Microbiote humain",
+          "contenu": "Chez l'Humain, les micro-organismes interagissent pour maintenir un équilibre qui influence la digestion, l’immunité, et même le cerveau (axe microbiote-intestin-cerveau). Par exemple le microbiote aide à digérer les aliments, produire des vitamines (comme la vitamine K), et métaboliser des composés."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "Les chaînes alimentaires et les interactions entre espèces (prédateurs, proies, symbiose) régulent les écosystèmes marins, jouant un rôle dans le climat et les cycles biogéochimiques."
+        }
+      ]
+    },
+    "cerveau": {
+      "description": "Énergies cycliques",
+      "titre": "Le cerveau",
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "Les rythmes biologiques (comme le cycle circadien) régulent le sommeil, l'activité, et les fonctions métaboliques."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "Les marées, influencées par la gravité lunaire, suivent des cycles réguliers qui rythment la vie marine et côtière."
+        }
+      ]
+    },
+    "epiderme/peau": {
+      "description": "Régulation et équilibre",
+      "titre": "La peau",
+      "info_complementaire": [
+        {
+          "titre": "Être humain",
+          "contenu": "Le corps humain maintient son équilibre interne grâce à l'homéostasie. Par exemple, la température corporelle, le pH sanguin, et l'équilibre hydrique sont régulés en permanence."
+        },
+        {
+          "titre": "Océan",
+          "contenu": "L'océan régule le climat global en absorbant et redistribuant la chaleur, en régulant le cycle du carbone, et en maintenant l'équilibre chimique de ses eaux."
+        }
+      ]
+    }
+  },
+  "PARTIES_ANORMALES": {
+    "estomac": {
+      "description": "Pollution (problème de digestion)",
+      "titre": "L'estomac pollué",
+      "info_complementaire": [
+        {
+          "titre": "Plastiques",
+          "contenu": "Les déchets plastiques s’accumulent dans l’océan, formant des 'îles' de plastique et affectant la faune marine."
+        },
+        {
+          "titre": "Microplastiques",
+          "contenu": "Ingestés par les animaux marins, ils entrent dans la chaîne alimentaire, y compris humaine."
+        }
+      ]
+    },
+    "peau": {
+      "description": "Réchauffement climatique",
+      "titre": "La peau et la chaleur",
+      "info_complementaire": [
+        {
+          "titre": "Augmentation de la température de l’eau",
+          "contenu": "Perturbe les habitats marins et provoque le blanchissement des coraux."
+        },
+        {
+          "titre": "Acidification des océans",
+          "contenu": "Le CO₂ absorbé par l’eau rend les océans plus acides, affectant les coquillages, les coraux et le plancton."
+        }
+      ]
+    },
+    "coeur": {
+      "description": "Effondrement des courants océaniques",
+      "titre": "Le cœur perturbé",
+      "info_complementaire": [
+        {
+          "titre": "Circulation perturbée",
+          "contenu": "Des changements dans les courants océaniques affectent le climat mondial."
+        }
+      ]
     }
   }
+}

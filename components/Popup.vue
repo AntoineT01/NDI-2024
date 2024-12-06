@@ -1,5 +1,5 @@
 <template>
-    <div class="relative"></div>
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-999"></div>
       <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center bg-blue-500">
         <div class="bg-white border-1 border-black rounded-lg shadow-lg text-right flex-column w-1/2">
           <div class="bg-white border-1 border-black rounded-lg p-4 shadow-lg w-full text-right flex flex-row h-[400px]">
@@ -25,15 +25,15 @@
             <p class = "ml-8"> - {{ extraInfo }} </p>
           </div>
         </div>
-        <div v-if="isPopupClosed" class="mt-10 p-6 bg-red-200 rounded-full shadow-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-          <p class="text-xl font-semibold text-red-600">Coupe !</p>
-        </div>
+<!--        <div class="mt-10 p-6 bg-red-200 rounded-full shadow-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">-->
+<!--          <p class="text-xl font-semibold text-red-600">Coupe !</p>-->
+<!--        </div>-->
       </div>
   </template>
-  
+
   <script setup>
 
-import { defineProps, ref } from 'vue'
+import { defineProps } from 'vue'
 
 // Définition des props
 const props = defineProps({
@@ -63,18 +63,12 @@ const props = defineProps({
   }
 })
 
-// Variables d'état
-const isPopupOpen = ref(true)
-const isPopupClosed = ref(false)
-
 const emit = defineEmits()
 // Fonction pour fermer le pop-up
 const close = () => {
   emit('close') // Émet l'événement pour fermer la modal dans le parent
 }
   </script>
-  
-  <style scoped>
-  /* Styles optionnels pour le modal */
-  </style>
-  
+
+<style scoped>
+</style>

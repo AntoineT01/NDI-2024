@@ -4,37 +4,37 @@ import Organ from './Organ.vue';
 
 const organs = ref([
   {
-    name: 'heart',
+    name: 'coeur',
     src: '/assets/human_body/sketch_coeur.png',
     alt: 'Image d\'un coeur',
     position: { top: '39%', left: '60%' },
     size: '10%',
     visible: true,
-    zIndex: 999,
-    next: 'lungs',
+    zIndex: 10,
+    next: 'poumon',
   },
   {
-    name: 'lungs',
+    name: 'poumon',
     src: '/assets/human_body/sketch_poumons.png',
     alt: 'Image d\'un poumon',
     position: { top: '37%', left: '57%' },
     size: '30%',
     visible: false,
     zIndex: 1,
-    next: 'skin',
+    next: 'epiderme/peau',
   },
   {
-    name: 'skin',
+    name: 'epiderme/peau',
     src: '/assets/human_body/sketch_peau.png',
     alt: 'Image d\'une peau',
     position: { top: '42%', left: '25%' },
     size: '13%',
     visible: false,
     zIndex: 1,
-    next: 'bone',
+    next: 'jambe',
   },
   {
-    name: 'bone',
+    name: 'jambe',
     src: '/assets/human_body/sketch_os.webp',
     alt: 'Image d\'un os',
     position: { top: '80%', left: '78%' },
@@ -51,20 +51,20 @@ const organs = ref([
     size: '13%',
     visible: false,
     zIndex: 1,
-    next: 'intestine',
+    next: 'estomac',
   },
   {
-    name: 'intestine',
+    name: 'estomac',
     src: '/assets/human_body/sketch_systeme_digestif.png',
     alt: 'Image d\'une sueur',
     position: { top: '51%', left: '58%' },
     size: '13%',
     visible: false,
     zIndex: 1,
-    next: 'nervous_system',
+    next: 'cerveau',
   },
   {
-    name: 'nervous_system',
+    name: 'cerveau',
     src: '/assets/human_body/sketch_systeme_nerveux_central.png',
     alt: 'Image d\'un systeme nerveux central',
     position: { top: '27%', left: '61%' },
@@ -74,8 +74,18 @@ const organs = ref([
   },
 ]);
 
+import jsonData from '~/content/Shema.json';
+
 const toggleOrgan = (currentOrgan: string) => {
   const organ = organs.value.find((o) => o.name === currentOrgan);
+  const organData = jsonData['PARTIES_NORMALES'][currentOrgan]; // Récupère les données du JSON
+  console.log(jsonData)
+  if (organData) {
+    activeOrgan.value = {
+      name: currentOrgan,
+      ...organData, // Fusionne les données JSON dans `activeOrgan`
+    };
+  }
   if (organ && organ.next) {
     const nextOrgan = organs.value.find((o) => o.name === organ.next);
     if (nextOrgan) {
@@ -83,6 +93,20 @@ const toggleOrgan = (currentOrgan: string) => {
     }
   }
 };
+
+const openPopup = () => {
+  // Mettre tous les organes en invisible et réassigner le tableau
+  organs.value = organs.value.map((organ) => ({
+    ...organ,
+    visible: false, // Force visible à false
+  }));
+};
+
+const closeModal = () => {
+  activeOrgan.value = null;
+}
+
+const activeOrgan = ref(null); // État pour l'organe actif
 </script>
 
 <template>
@@ -90,6 +114,7 @@ const toggleOrgan = (currentOrgan: string) => {
     <img src="/assets/human_body/sketch_personnage.png" alt="Image d'un humain" class="human_body" />
     <Organ
         v-for="organ in organs"
+        v-if="!activeOrgan"
         :key="organ.name"
         :name="organ.name"
         :src="organ.src"
@@ -99,6 +124,17 @@ const toggleOrgan = (currentOrgan: string) => {
         :visible="organ.visible"
         :zIndex="organ.zIndex"
         :onClick="() => toggleOrgan(organ.name)"
+    />
+
+    <Popup
+        v-if="activeOrgan"
+        :title="`${activeOrgan.titre}`"
+        :description="`${activeOrgan.description}`"
+        src="/assets/images/coeur.png"
+        :fluidTitle="'Circulation fluide'"
+        :fluidText="['Le sang circule dans le corps via le système cardiovasculaire.', 'Les courants marins agissent comme un système circulatoire.']"
+        :extraInfo="'Information supplémentaire sur la circulation du sang et des courants marins.'"
+        @close="closeModal"
     />
   </div>
 </template>

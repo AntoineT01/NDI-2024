@@ -63,7 +63,6 @@ useHead({
 })
 
 const openPopup = () => {
-  console.log("Ouverture du pop-up")
   isPopupOpen.value = true
 }
 
