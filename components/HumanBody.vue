@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref, watch } from 'vue';
 import Organ from './Organ.vue';
 
 const organs = ref([
@@ -7,7 +7,7 @@ const organs = ref([
     name: 'coeur',
     src: '/assets/human_body/sketch_coeur.png',
     alt: 'Image d\'un coeur',
-    position: {top: '39%', left: '60%'},
+    position: { top: '39%', left: '60%' },
     size: '10%',
     visible: true,
     zIndex: 10,
@@ -17,7 +17,7 @@ const organs = ref([
     name: 'poumon',
     src: '/assets/human_body/sketch_poumons.png',
     alt: 'Image d\'un poumon',
-    position: {top: '37%', left: '57%'},
+    position: { top: '37%', left: '57%' },
     size: '30%',
     visible: false,
     zIndex: 1,
@@ -27,7 +27,7 @@ const organs = ref([
     name: 'epiderme/peau',
     src: '/assets/human_body/sketch_peau.png',
     alt: 'Image d\'une peau',
-    position: {top: '42%', left: '25%'},
+    position: { top: '42%', left: '25%' },
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -37,7 +37,7 @@ const organs = ref([
     name: 'jambe',
     src: '/assets/human_body/sketch_os.webp',
     alt: 'Image d\'un os',
-    position: {top: '80%', left: '78%'},
+    position: { top: '80%', left: '78%' },
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -47,17 +47,17 @@ const organs = ref([
     name: 'sueur',
     src: '/assets/human_body/sketch_sueur.webp',
     alt: 'Image d\'une sueur',
-    position: {top: '45%', left: '82%'},
+    position: { top: '45%', left: '82%' },
     size: '13%',
     visible: false,
     zIndex: 1,
-    next: 'estomac',
+    next: 'systeme_digestif',
   },
   {
-    name: 'estomac',
+    name: 'systeme_digestif',
     src: '/assets/human_body/sketch_systeme_digestif.png',
     alt: 'Image d\'une sueur',
-    position: {top: '51%', left: '58%'},
+    position: { top: '51%', left: '58%' },
     size: '13%',
     visible: false,
     zIndex: 1,
@@ -67,7 +67,7 @@ const organs = ref([
     name: 'cerveau',
     src: '/assets/human_body/sketch_systeme_nerveux_central.png',
     alt: 'Image d\'un systeme nerveux central',
-    position: {top: '27%', left: '61%'},
+    position: { top: '27%', left: '61%' },
     size: '17%',
     visible: false,
     zIndex: 1,
@@ -76,12 +76,17 @@ const organs = ref([
 
 import jsonData from '~/content/Shema.json';
 
+const gameActivated = ref(true);
+const showEndModal = ref(false);
+const shouldShowEndModal = ref(false);
+
 const toggleOrgan = (currentOrgan: string) => {
   const organ = organs.value.find((o) => o.name === currentOrgan);
 
-  if (organ?.name === 'coeur') {
+  if (organ?.name === 'coeur' && gameActivated.value) {
     showGameModal.value = true;
   }
+
   const organData = jsonData['PARTIES_NORMALES'][currentOrgan]; // Récupère les données du JSON
   if (organData) {
     activeOrgan.value = {
@@ -97,17 +102,20 @@ const toggleOrgan = (currentOrgan: string) => {
   }
 };
 
-const openPopup = () => {
-  // Mettre tous les organes en invisible et réassigner le tableau
-  organs.value = organs.value.map((organ) => ({
-    ...organ,
-    visible: false, // Force visible à false
-  }));
+const closeModal = (currentOrgan: string) => {
+  activeOrgan.value = null;
+
+  const organ = organs.value.find((o) => o.name === currentOrgan);
+
+
+  if (organ?.name === 'cerveau') {
+    shouldShowEndModal.value = true; // Marque la modal de fin comme devant être affichée
+  }
 };
 
-const closeModal = () => {
-  activeOrgan.value = null;
-}
+const closeEndModal = () => {
+  showEndModal.value = false;
+};
 
 const closeGameModal = () => {
   showGameModal.value = false;
@@ -116,6 +124,14 @@ const closeGameModal = () => {
 const activeOrgan = ref(null); // État pour l'organe actif
 const heartOrgan = ref(false); // État pour l'organe actif
 const showGameModal = ref(false); // Contrôle l'ouverture du GameModal
+
+// Surveiller la fermeture de `Popup` pour afficher la modal de fin
+watch(activeOrgan, (newValue) => {
+  if (!newValue && shouldShowEndModal.value) {
+    showEndModal.value = true;
+    shouldShowEndModal.value = false;
+  }
+});
 </script>
 
 <template>
@@ -136,6 +152,7 @@ const showGameModal = ref(false); // Contrôle l'ouverture du GameModal
     />
 
     <GameModal v-if="showGameModal" @close="closeGameModal" @verified="closeGameModal"/>
+    <EndModal v-if="showEndModal" @close="closeEndModal" />
 
     <Popup
         v-if="activeOrgan && !heartOrgan"
@@ -143,7 +160,7 @@ const showGameModal = ref(false); // Contrôle l'ouverture du GameModal
         :description="`${activeOrgan.description}`"
         :src="`${activeOrgan.src}`"
         :infoComplementaire="JSON.parse(JSON.stringify(activeOrgan.info_complementaire))"
-        @close="closeModal"
+        @close="closeModal(activeOrgan.name)"
     />
   </div>
 </template>

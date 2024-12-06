@@ -90,21 +90,21 @@
         }
       ]
     },
-    "estomac": {
-      "description": "L'estomac humain fonctionne comme un écosystème, interagissant avec des micro-organismes pour faciliter la digestion et maintenir un équilibre. Les écosystèmes marins jouent un rôle similaire en régulant les cycles biogéochimiques et en soutenant la vie marine.",
-      "titre": "L'estomac",
+    "systeme_digestif": {
+      "description": "Le système digestif humain est un réseau complexe d'organes travaillant ensemble pour transformer les aliments en énergie et en nutriments. De manière similaire, les écosystèmes marins agissent comme des réseaux interdépendants où chaque composant joue un rôle crucial dans le maintien de l'équilibre écologique.",
+      "titre": "Le système digestif",
       "src": "/assets/human_body/sketch_systeme_digestif.png",
       "position": { "top": "51%", "left": "58%" },
       "size": "13%",
       "zIndex": 1,
       "info_complementaire": [
         {
-          "titre": "Microbiote humain",
-          "contenu": "Chez l'Humain, les micro-organismes interagissent pour maintenir un équilibre qui influence la digestion, l’immunité, et même le cerveau."
+          "titre": "Être humain",
+          "contenu": "Le système digestif décompose les aliments en éléments nutritifs essentiels, absorbés par le corps pour fournir énergie et maintenir les fonctions vitales."
         },
         {
           "titre": "Océan",
-          "contenu": "Les chaînes alimentaires et les interactions entre espèces (prédateurs, proies, symbiose) régulent les écosystèmes marins, jouant un rôle dans le climat et les cycles biogéochimiques."
+          "contenu": "Les écosystèmes marins, à travers des interactions comme la prédation, la décomposition et la symbiose, transforment l'énergie solaire et chimique pour soutenir la vie océanique."
         }
       ]
     },
