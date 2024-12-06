@@ -7,42 +7,42 @@
 
     <div v-if="showModal" class="modal-overlay" @click.self="closeModal">
       <div class="modal-content">
-        <button class="close-btn" @click="closeModal">&times;</button>
+        <button class="close-btn" @click="closeModal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
         <GameTcha ref="gameComponent" @success="handleSuccess" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'GameModal',
-  emits: ['verified'],
-  data() {
-    return {
-      showModal: false
-    }
-  },
-  watch: {
-    showModal(newValue) {
-      if (newValue) {
-        // Attendre que le composant soit monté avant de démarrer le jeu
-        this.$nextTick(() => {
-          this.$refs.gameComponent.startGame();
-        });
-      }
-    }
-  },
-  methods: {
-    closeModal() {
-      this.showModal = false
-    },
-    handleSuccess() {
-      this.showModal = false
-      this.$emit('verified')
-    }
-  }
+<script setup>
+import { ref, watch, nextTick } from 'vue'
+import GameTcha from './GameTcha.vue'
+
+const showModal = ref(false)
+const gameComponent = ref(null)
+const emit = defineEmits(['verified'])
+
+const closeModal = () => {
+  showModal.value = false
 }
+
+const handleSuccess = () => {
+  showModal.value = false
+  emit('verified')
+}
+
+watch(showModal, (newValue) => {
+  if (newValue) {
+    nextTick(() => {
+      gameComponent.value?.startGame()
+    })
+  }
+})
 </script>
 
 <style scoped>
@@ -64,8 +64,12 @@ export default {
   padding: 2rem;
   border-radius: 8px;
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  width:  50em;   /* Largeur fixe */
+  height: 50em;   /* Hauteur fixe */
+  display: flex;   /* Pour centrer le contenu */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: auto;
 }
 
@@ -73,11 +77,22 @@ export default {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: none;
+  background: transparent;
   border: none;
-  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
   cursor: pointer;
-  z-index: 1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.close-btn:hover {
+  background-color: #f5f5f5;
+  color: #333;
 }
 
 .open-btn {
