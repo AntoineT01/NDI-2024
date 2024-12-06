@@ -80,12 +80,18 @@ const gameActivated = ref(true);
 const showEndModal = ref(false);
 const shouldShowEndModal = ref(false);
 const gameAlreadyWon = ref(false);
+const puissance4AlreadyWon = ref(false);
+const showPuissance4Game = ref(false);
 
 const toggleOrgan = (currentOrgan: string) => {
   const organ = organs.value.find((o) => o.name === currentOrgan);
 
   if (organ?.name === 'coeur' && gameActivated.value && !gameAlreadyWon.value) {
     showGameModal.value = true;
+  }
+
+  if (organ?.name === 'poumon' && gameActivated.value && !puissance4AlreadyWon.value) {
+    showPuissance4Game.value = true;
   }
 
   const organData = jsonData['PARTIES_NORMALES'][currentOrgan]; // Récupère les données du JSON
@@ -123,6 +129,11 @@ const closeGameModal = () => {
   gameAlreadyWon.value = true;
 };
 
+const closePuissance4Modal = () => {
+  puissance4AlreadyWon.value = true;
+  showPuissance4Game.value = false;
+}
+
 const activeOrgan = ref(null); // État pour l'organe actif
 const heartOrgan = ref(false); // État pour l'organe actif
 const showGameModal = ref(false); // Contrôle l'ouverture du GameModal
@@ -155,6 +166,7 @@ watch(activeOrgan, (newValue) => {
 
     <GameModal v-if="showGameModal" @close="closeGameModal" @verified="closeGameModal"/>
     <EndModal v-if="showEndModal" @close="closeEndModal" />
+    <Puissance4  v-if="showPuissance4Game" @close="closePuissance4Modal"/>
 
     <Popup
         v-if="activeOrgan && !heartOrgan"

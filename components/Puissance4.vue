@@ -1,20 +1,24 @@
 <template>
   <div class="game-container">
-    <!-- Bouton d'ouverture -->
-    <button @click="showModal = true" class="open-button">
-      <div class="button-content">
-        <span class="button-text">Puissance 4</span>
-        <span class="button-icon">🤖</span>
+    <!-- Popup initiale -->
+    <div v-if="showIntroPopup" class="intro-popup">
+      <div class="popup-content">
+        <h2 style="color: white">
+          Nos systèmes doutent toujours que vous soyez humain. Prouvez-nous le contraire en battant notre robot 😈
+        </h2>
+        <p>
+        </p>
+        <button @click="startGame" class="start-button">Commencer</button>
       </div>
-    </button>
+    </div>
 
     <!-- Modal du jeu -->
-    <div v-if="showModal" class="modal" @click.self="showModal = false">
+    <div class="modal">
       <div class="modal-content">
         <!-- En-tête -->
         <div class="modal-header">
           <h2 class="game-title">Puissance 4 vs IA</h2>
-          <button @click="showModal = false" class="close-button">×</button>
+          <button v-if="winner === 1" @click="closeGame" class="close-button">×</button>
         </div>
 
         <!-- Plateau de jeu -->
@@ -42,7 +46,7 @@
         <div class="game-controls">
           <div v-if="winner" class="winner-banner" :class="{ 'ai-wins': winner === 2 }">
             <p class="winner-text">
-              {{ winner === 1 ? 'Vous avez gagné ! 🎉' : "L'IA a gagné ! 🤖" }}
+              {{ winner === 1 ? 'Vous avez gagné ! 🎉 Vous pouvez fermer maintenant.' : "L'IA a gagné ! 🤖" }}
             </p>
           </div>
           <p v-else-if="isDraw" class="draw-text">Match nul ! 🤝</p>
@@ -74,8 +78,10 @@
 <script>
 export default {
   name: 'Puissance4',
+  emits: ['close'],
   data() {
     return {
+      showIntroPopup: true,
       board: Array(6).fill().map(() => Array(7).fill(null)),
       currentPlayer: 1,
       winner: null,
@@ -93,7 +99,12 @@ export default {
         hard: 'Difficile'
       }[level]
     },
-
+    closeGame() {
+      this.$emit('close');
+    },
+    startGame() {
+      this.showIntroPopup = false;
+    },
     setDifficulty(level) {
       this.difficulty = level;
       this.resetGame();
@@ -544,5 +555,45 @@ export default {
     width: 40px;
     height: 40px;
   }
+}
+
+
+.intro-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-content {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.start-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 </style>

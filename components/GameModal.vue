@@ -51,7 +51,7 @@ const handleSuccess = () => {
 
 // Fonction pour fermer la modal
 const closeModal = () => {
-  emit('close'); // Émet l'événement pour fermer
+  emit('close');
 };
 </script>
 
