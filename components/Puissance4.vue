@@ -13,51 +13,13 @@
       <div class="modal-content">
         <!-- En-tête -->
         <div class="modal-header">
-          <h2 class="game-title">
-            <span class="title-icon">🎮</span>
-            Puissance 4
-            <span class="title-icon">🤖</span>
-          </h2>
+          <h2 class="game-title">Puissance 4 vs IA</h2>
           <button @click="showModal = false" class="close-button">×</button>
-        </div>
-
-        <!-- Information des joueurs -->
-        <div class="player-info">
-          <div class="player-card" :class="{ active: currentPlayer === 1 }">
-            <div class="player-avatar">👤</div>
-            <div class="player-piece player1"></div>
-            <span>Joueur</span>
-          </div>
-          <div class="vs-badge">VS</div>
-          <div class="player-card" :class="{ active: currentPlayer === 2 }">
-            <div class="player-avatar">🤖</div>
-            <div class="player-piece player2"></div>
-            <span>IA</span>
-            <span v-if="thinking" class="thinking">🔄</span>
-          </div>
         </div>
 
         <!-- Plateau de jeu -->
         <div class="board-container">
           <div class="board">
-            <!-- Pièces en animation -->
-            <div
-                v-for="piece in fallingPieces"
-                :key="piece.id"
-                class="falling-piece"
-                :class="{ 'player1': piece.player === 1, 'player2': piece.player === 2 }"
-                :style="{
-                left: `${piece.col * (100/7)}%`,
-                top: `${piece.targetRow * (100/6)}%`,
-                transition: 'top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-              }"
-            >
-              <div class="piece">
-                <div class="piece-inner"></div>
-              </div>
-            </div>
-
-            <!-- Grille de jeu -->
             <div v-for="(row, rowIndex) in board" :key="rowIndex" class="row">
               <div
                   v-for="(cell, colIndex) in row"
@@ -67,32 +29,24 @@
                   :class="{
                   'player1': cell === 1,
                   'player2': cell === 2,
-                  'hover': !cell && currentPlayer === 1 && !winner && !thinking
+                  'empty': cell === null
                 }"
               >
-                <div class="cell-content">
-                  <div class="piece">
-                    <div class="piece-inner"></div>
-                  </div>
-                </div>
+                <div class="piece"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Contrôles et statut -->
+        <!-- Contrôles -->
         <div class="game-controls">
           <div v-if="winner" class="winner-banner" :class="{ 'ai-wins': winner === 2 }">
-            <div class="winner-content">
-              <div class="trophy">{{ winner === 1 ? '🏆' : '🤖' }}</div>
-              <p class="winner-text">
-                {{ winner === 1 ? 'Victoire ! 🎉' : "L'IA l'emporte ! 🤖" }}
-              </p>
-            </div>
+            <p class="winner-text">
+              {{ winner === 1 ? 'Vous avez gagné ! 🎉' : "L'IA a gagné ! 🤖" }}
+            </p>
           </div>
           <p v-else-if="isDraw" class="draw-text">Match nul ! 🤝</p>
 
-          <!-- Sélecteur de difficulté -->
           <div class="difficulty-selector">
             <label>Niveau :</label>
             <div class="difficulty-buttons">
@@ -108,10 +62,8 @@
             </div>
           </div>
 
-          <!-- Bouton reset -->
           <button @click="resetGame" class="reset-button">
-            <span class="reset-icon">🔄</span>
-            <span>Nouvelle partie</span>
+            <span>Nouvelle partie 🔄</span>
           </button>
         </div>
       </div>
@@ -130,11 +82,9 @@ export default {
       isDraw: false,
       showModal: false,
       thinking: false,
-      difficulty: 'medium',
-      fallingPieces: []
+      difficulty: 'medium'
     }
   },
-
   methods: {
     getDifficultyLabel(level) {
       return {
@@ -153,13 +103,13 @@ export default {
       if (this.winner || this.isDraw || this.thinking || this.currentPlayer !== 1) return;
 
       if (this.isValidMove(col)) {
-        await this.dropPiece(col);
+        this.dropPiece(col);
 
         if (!this.winner && !this.isDraw) {
           this.thinking = true;
           await this.delay(500);
           const aiMove = this.getAIMove();
-          await this.dropPiece(aiMove);
+          this.dropPiece(aiMove);
           this.thinking = false;
         }
       }
@@ -173,36 +123,21 @@ export default {
       return new Promise(resolve => setTimeout(resolve, ms));
     },
 
-    async dropPiece(col) {
-      if (!this.isValidMove(col)) return;
-
-      let row = this.getRowForCol(col);
-      if (row === -1) return;
-
-      // Animation de chute
-      const piece = {
-        id: Date.now(),
-        col,
-        player: this.currentPlayer,
-        startRow: -1,
-        targetRow: row
-      };
-
-      this.fallingPieces.push(piece);
-      await this.delay(500);
-
-      this.board[row][col] = this.currentPlayer;
-      this.fallingPieces = this.fallingPieces.filter(p => p.id !== piece.id);
-
-      if (this.checkWin(row, col)) {
-        this.winner = this.currentPlayer;
-      } else if (this.checkDraw()) {
-        this.isDraw = true;
-      } else {
-        this.currentPlayer = this.currentPlayer === 1 ? 2 : 1;
+    dropPiece(col) {
+      for (let row = 5; row >= 0; row--) {
+        if (!this.board[row][col]) {
+          this.board[row][col] = this.currentPlayer;
+          if (this.checkWin(row, col)) {
+            this.winner = this.currentPlayer;
+          } else if (this.checkDraw()) {
+            this.isDraw = true;
+          } else {
+            this.currentPlayer = this.currentPlayer === 1 ? 2 : 1;
+          }
+          break;
+        }
       }
     },
-
     getAIMove() {
       switch (this.difficulty) {
         case 'easy':
@@ -223,7 +158,7 @@ export default {
     },
 
     getSmartMove() {
-      // Vérifier la victoire possible
+      // Vérifier victoire immédiate
       for (let col = 0; col < 7; col++) {
         if (this.isValidMove(col)) {
           let row = this.getRowForCol(col);
@@ -236,7 +171,7 @@ export default {
         }
       }
 
-      // Bloquer la victoire du joueur
+      // Bloquer victoire adversaire
       for (let col = 0; col < 7; col++) {
         if (this.isValidMove(col)) {
           let row = this.getRowForCol(col);
@@ -249,15 +184,95 @@ export default {
         }
       }
 
-      // Jouer au centre de préférence
-      if (this.isValidMove(3)) return 3;
+      // Évaluer chaque colonne
+      let bestScore = -Infinity;
+      let bestMoves = [];
 
-      return this.getRandomMove();
+      for (let col = 0; col < 7; col++) {
+        if (this.isValidMove(col)) {
+          let row = this.getRowForCol(col);
+          let score = this.evaluateMove(row, col);
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestMoves = [col];
+          } else if (score === bestScore) {
+            bestMoves.push(col);
+          }
+        }
+      }
+
+      return bestMoves[Math.floor(Math.random() * bestMoves.length)];
+    },
+
+    evaluateMove(row, col) {
+      let score = 0;
+
+      // Bonus pour le centre
+      if (col === 3) score += 3;
+
+      // Vérifier les alignements potentiels
+      score += this.checkPotentialAlignments(row, col, 2); // Pour l'IA
+      score -= this.checkPotentialAlignments(row, col, 1); // Contre le joueur
+
+      return score;
+    },
+
+    checkPotentialAlignments(row, col, player) {
+      let count = 0;
+      const directions = [
+        [[0, 1], [0, -1]], // Horizontal
+        [[1, 0], [-1, 0]], // Vertical
+        [[1, 1], [-1, -1]], // Diagonal /
+        [[1, -1], [-1, 1]] // Diagonal \
+      ];
+
+      for (const [dir1, dir2] of directions) {
+        let sequence = this.getSequence(row, col, player, dir1, dir2);
+        count += this.evaluateSequence(sequence);
+      }
+
+      return count;
+    },
+
+    getSequence(row, col, player, dir1, dir2) {
+      let sequence = [player];
+      this.board[row][col] = player;
+
+      for (const [dx, dy] of [dir1, dir2]) {
+        let r = row + dx;
+        let c = col + dy;
+        let count = 0;
+
+        while (r >= 0 && r < 6 && c >= 0 && c < 7 && count < 3) {
+          sequence.push(this.board[r][c]);
+          r += dx;
+          c += dy;
+          count++;
+        }
+      }
+
+      this.board[row][col] = null;
+      return sequence;
+    },
+
+    evaluateSequence(sequence) {
+      let empty = sequence.filter(cell => cell === null).length;
+      let player = sequence.filter(cell => cell !== null).length;
+      let score = 0;
+
+      if (player === 4) score += 100;
+      else if (player === 3 && empty === 1) score += 5;
+      else if (player === 2 && empty === 2) score += 2;
+
+      return score;
     },
 
     getRowForCol(col) {
       for (let row = 5; row >= 0; row--) {
-        if (!this.board[row][col]) return row;
+        if (!this.board[row][col]) {
+          return row;
+        }
       }
       return -1;
     },
@@ -275,7 +290,6 @@ export default {
       for (const [dir1, dir2] of directions) {
         let count = 1;
 
-        // Vérifier dans les deux directions
         for (const [dx, dy] of [dir1, dir2]) {
           let r = row + dx;
           let c = col + dy;
@@ -302,7 +316,6 @@ export default {
       this.winner = null;
       this.isDraw = false;
       this.thinking = false;
-      this.fallingPieces = [];
     }
   }
 }
@@ -318,7 +331,6 @@ export default {
   font-family: Arial, sans-serif;
 }
 
-/* Modal et conteneur principal */
 .modal {
   position: fixed;
   top: 0;
@@ -330,163 +342,131 @@ export default {
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  backdrop-filter: blur(5px);
 }
 
 .modal-content {
   background: linear-gradient(135deg, #1e293b, #0f172a);
   padding: 30px;
   border-radius: 20px;
-  max-width: 800px;
+  max-width: 700px;
   width: 90%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   color: white;
-  position: relative;
 }
 
-/* Bouton d'ouverture */
 .open-button {
   padding: 20px 40px;
   font-size: 24px;
   background: linear-gradient(45deg, #4f46e5, #6366f1);
   color: white;
   border: none;
-  border-radius: 16px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
 }
 
-.open-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 20px rgba(79, 70, 229, 0.4);
-}
-
-/* En-tête du jeu */
 .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .game-title {
-  font-size: 32px;
+  font-size: 28px;
   margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .close-button {
   background: none;
   border: none;
   color: white;
-  font-size: 32px;
+  font-size: 28px;
   cursor: pointer;
-  transition: color 0.3s;
 }
 
-/* Plateau de jeu */
 .board-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 85.7%;
   margin: 20px 0;
-}
-.board {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
   padding: 15px;
+  background: #2563eb;
   border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.board {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  background: #2563eb;
+  border-radius: 10px;
 }
 
 .row {
-  display: flex;
-  gap: 8px;
-  height: calc(100% / 6); /* Définir une hauteur fixe pour chaque rangée */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
 }
 
-/* Modifiez ces styles dans la partie CSS */
 .cell {
-  flex: 1;
+  aspect-ratio: 1;
+  background: #1e293b;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
   position: relative;
-  /* Changez le padding-bottom pour avoir des cercles au lieu d'ovales */
-  padding-bottom: calc(100% / 7); /* Cela maintient un ratio carré */
-  max-width: calc(100% / 7);
 }
 
-
-.cell-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 8%;
+.cell:hover {
+  transform: translateY(-2px);
 }
 
-/* Ajustez le style des pièces pour assurer un cercle parfait */
 .piece {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background: white;
-  transition: background-color 0.3s;
-  aspect-ratio: 1/1; /* Force un ratio 1:1 */
-}
-
-/* Pièces en mouvement */
-.falling-piece {
-  position: absolute;
-  width: calc(100% / 7);
-  height: calc(100% / 6);
-  padding: 8px;
-  z-index: 2;
-  animation: dropIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.player1 .piece {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-}
-
-.player2 .piece {
-  background: linear-gradient(135deg, #facc15, #eab308);
-}
-
-/* Informations des joueurs */
-.player-info {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-bottom: 20px;
-}
-
-.player-card {
-  padding: 15px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  opacity: 0.7;
   transition: all 0.3s;
 }
 
-.player-card.active {
-  opacity: 1;
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.2);
+.cell.player1 .piece {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  box-shadow: inset 0 -4px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Contrôles du jeu */
+.cell.player2 .piece {
+  background: linear-gradient(135deg, #facc15, #eab308);
+  box-shadow: inset 0 -4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.game-controls {
+  margin-top: 20px;
+}
+
+.winner-banner {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: slideIn 0.5s ease-out;
+}
+
+.ai-wins {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+.winner-text {
+  font-size: 24px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.draw-text {
+  text-align: center;
+  font-size: 24px;
+  color: #f59e0b;
+  font-weight: bold;
+}
+
 .difficulty-selector {
   text-align: center;
   margin: 20px 0;
@@ -500,7 +480,7 @@ export default {
 }
 
 .difficulty-button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
@@ -511,30 +491,25 @@ export default {
 
 .difficulty-button.active {
   background: linear-gradient(135deg, #6366f1, #4f46e5);
+  transform: scale(1.05);
 }
 
-/* Messages de fin de partie */
-.winner-banner {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  margin: 20px 0;
-  animation: slideIn 0.5s ease-out;
+.reset-button {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
 }
 
-.ai-wins {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
-}
-
-/* Animations */
-@keyframes dropIn {
-  from {
-    transform: translateY(-500%);
-  }
-  to {
-    transform: translateY(0);
-  }
+.reset-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slideIn {
@@ -548,38 +523,26 @@ export default {
   }
 }
 
-/* Animation de réflexion de l'IA */
-.thinking {
-  animation: spin 1s linear infinite;
-  display: inline-block;
-  margin-left: 8px;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* Responsive */
 @media (max-width: 600px) {
   .modal-content {
-    padding: 15px;
+    padding: 20px;
   }
 
   .game-title {
     font-size: 24px;
   }
 
+  .winner-text {
+    font-size: 20px;
+  }
+
   .difficulty-buttons {
     flex-direction: column;
   }
 
-  .player-info {
-    gap: 15px;
-  }
-
-  .player-card {
-    padding: 10px;
+  .cell {
+    width: 40px;
+    height: 40px;
   }
 }
 </style>
