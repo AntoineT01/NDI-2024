@@ -9,3 +9,12 @@
 // Aucune logique spécifique n'est nécessaire pour l'instant
 import HumanBody from "~/components/HumanBody.vue";
 </script>
+
+<style>
+body {
+  background-image:url("images/background/fond.png") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>
