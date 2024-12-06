@@ -40,4 +40,14 @@ img:hover {
   transform: translate(-50%, -50%) scale(1.1) !important;
   filter: brightness(1.3);
 }
+
+.human_bone {
+  transform: translate(-50%, -50%) rotate(-3deg) scale(0.95) !important; /* Rotation initiale */
+}
+
+.human_bone:hover {
+  transform: translate(-50%, -50%) rotate(-3deg) scale(1.07) !important; /* Rotation initiale */
+  filter: brightness(1.15);
+}
+
 </style>
