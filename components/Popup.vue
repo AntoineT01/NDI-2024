@@ -56,10 +56,10 @@
   /* Styles optionnels pour le modal */
   .modal-fade-enter-active,
   .modal-fade-leave-active {
-    transition: opacity 0.5s;
+    transition: opacity 0.5s ease-in;
   }
 
-  .modal-fade-enter,
+  .modal-fade-enter-from,
   .modal-fade-leave-to {
     opacity: 0;
   }
