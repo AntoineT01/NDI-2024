@@ -1,4 +1,3 @@
-<!-- pages/example.vue -->
 <template>
   <div>
     <h1>Ma page protégée</h1>
@@ -13,6 +12,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import GameModal from '~/components/GameModal.vue'
+
 const isVerified = ref(false)
 
 const handleVerification = () => {
@@ -21,3 +23,13 @@ const handleVerification = () => {
   // navigateTo('/protected')
 }
 </script>
+
+<style scoped>
+.page-container {
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
+}
+</style>
